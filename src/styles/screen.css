@@ -4,17 +4,7 @@ html, body {
 }
 
 body {
-  font-family:"Helvetica Neue", Arial;
-  padding:20px;
   text-align:center;
-}
-
-ul {
- padding: 0;
-}
-
-ul li {
-  list-style: none;
 }
 
 @keyframes rotate {
