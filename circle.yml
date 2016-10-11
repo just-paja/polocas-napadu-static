@@ -6,4 +6,4 @@ deployment:
   aws:
     branch: master
     commands:
-      - ./publish.sh
+      - ./deploy.sh
