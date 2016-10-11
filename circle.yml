@@ -3,8 +3,8 @@ dependencies:
     - bundle install
     - sudo pip install awscli
 
-  deployment:
-    aws:
-      branch: master
-      commands:
-        - ./publish.sh
+deployment:
+  aws:
+    branch: master
+    commands:
+      - ./publish.sh
