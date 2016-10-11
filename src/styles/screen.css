@@ -1,0 +1,74 @@
+html, body {
+  margin:0 auto;
+  max-width:680px;
+}
+
+body {
+  font-family:"Helvetica Neue", Arial;
+  padding:20px;
+  text-align:center;
+}
+
+ul {
+ padding: 0;
+}
+
+ul li {
+  list-style: none;
+}
+
+@keyframes rotate {
+  0% {
+    transform:rotate(0);
+  }
+  100% {
+    transform:rotate(360deg);
+  }
+}
+
+.logo {
+  height:0;
+  margin:0 auto;
+  overflow:hidden;
+  position:relative;
+  min-height:250px;
+  max-width:250px;
+}
+
+.logo * {
+  cursor:default;
+}
+
+.logo-cont {
+  position:absolute;
+  height:100%;
+  left:0;
+  top:0;
+  width:100%;
+}
+
+.logo-bulb,
+.logo-border,
+.logo-anim {
+  bottom:0;
+  left:0;
+  position:absolute;
+  right:0;
+  top:0;
+}
+
+.logo-bulb {
+  background:url(../layers/lightbulb.png) center center no-repeat;
+  background-size:contain;
+}
+
+.logo-anim {
+  animation: rotate 10s linear infinite;
+  background:url(../layers/flaps.png) center center no-repeat;
+  background-size:contain;
+}
+
+.logo-border {
+  background: url(../layers/circle.png) center center no-repeat;
+  background-size:contain;
+}
