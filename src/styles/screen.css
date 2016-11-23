@@ -128,3 +128,8 @@ footer {
     text-align: center;
   }
 }
+
+.show-count {
+  font-size:36px;
+  text-align: center;
+}
