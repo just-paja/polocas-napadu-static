@@ -100,6 +100,9 @@ footer {
   font-size: 30px;
 }
 
+#partners img {
+  width: 64px;
+}
 
 @media (min-width: 768px) {
   .text-center-sm {
