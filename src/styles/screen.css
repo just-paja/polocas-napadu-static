@@ -100,8 +100,18 @@ footer {
   font-size: 30px;
 }
 
-#partners img {
-  width: 64px;
+#partners img.improliga {
+  width: 32px;
+}
+
+#partners .kudy-z-nudy {
+	height: 32px;
+	overflow: hidden;
+	display: block;
+}
+#partners .kudy-z-nudy img {
+	position:relative;
+	top: -16px;
 }
 
 @media (min-width: 768px) {
