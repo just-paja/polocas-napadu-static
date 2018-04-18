@@ -119,7 +119,7 @@ footer {
     text-align: center;
   }
 
-  .text-left-sm {
+  .text-sm-left {
     text-align: left;
   }
 
@@ -161,4 +161,10 @@ footer {
 .show-count {
   font-size:36px;
   text-align: center;
+}
+
+.well {
+  padding: 1rem 0 1rem;
+  margin: 1rem 0;
+  background: rgba(200,200,200,.4);
 }
