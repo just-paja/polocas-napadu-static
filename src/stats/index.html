@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Statistiky veřejné produkce</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.7/css/highcharts.css" />
+
+  <style>
+    html, body, .chart, .container {
+      height: 100%;
+    }
+    body {
+      text-align: center;
+      padding-top: 5rem;
+    }
+    h1 {
+      position: fixed;
+      z-index: 100;
+      text-align: center;
+      left: 0;
+      right: 0;
+      top: 0;
+      background: rgba(255,255,255, .95);
+      padding: 1rem 0;
+    }
+    h2 {
+      margin-bottom: 1rem;
+    }
+    .logo {
+      width: 10rem;
+      left: 1rem;
+      position: absolute;
+      top: 1rem;
+    }
+    .chart {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .chart-content {
+      width: 100%;
+    }
+  </style>
+
+  <script>
+    const forms = [
+      {
+        id: 1,
+        name: 'Long forma',
+      },
+      {
+        id: 2,
+        name: 'Short forma',
+      },
+    ];
+    const seasons = [
+      {
+        id: 1,
+        name: '2015/2016',
+        start: '2015-09',
+        end: '2016-09',
+      },
+      {
+        id: 2,
+        name: '2016/2017',
+        start: '2016-09',
+        end: '2017-09',
+      },
+      {
+        id: 3,
+        name: '2017/2018',
+        start: '2017-09',
+        end: '2018-09',
+      },
+    ];
+    const locations = [
+      {
+        type: 'Venku',
+        counts: [
+          { season: 1, count: 0 },
+          { season: 2, count: 1 },
+          { season: 3, count: 1 },
+        ],
+      },
+      {
+        type: 'Uvnitř',
+        counts: [
+          { season: 1, count: 8 },
+          { season: 2, count: 18 },
+          { season: 3, count: 9 },
+        ],
+      },
+      {
+        type: 'Účast na soutěži',
+        counts: [
+          { season: 1, count: 0 },
+          { season: 2, count: 2 },
+          { season: 3, count: 0 },
+        ],
+      },
+    ];
+    const childrenBorn = [
+      { season: 1, count: 0 },
+      { season: 2, count: 0 },
+      { season: 3, count: 1 },
+    ];
+    const production = [
+      {
+        type: 'Příběhy z motelu',
+        form: 1,
+        counts: [
+          { season: 1, count: 3 },
+          { season: 2, count: 4 },
+          { season: 3, count: 0 },
+        ],
+      },
+      {
+        type: 'Improshow',
+        form: 2,
+        counts: [
+          { season: 1, count: 1 },
+          { season: 2, count: 3 },
+          { season: 3, count: 3 },
+        ],
+      },
+      {
+        type: 'Improvizační zápas',
+        form: 2,
+        counts: [
+          { season: 1, count: 3 },
+          { season: 2, count: 5 },
+          { season: 3, count: 6 },
+        ],
+      },
+      {
+        type: 'Úplně obyčejné zprávy',
+        form: 1,
+        counts: [
+          { season: 1, count: 0 },
+          { season: 2, count: 2 },
+          { season: 3, count: 0 },
+        ],
+      },
+      {
+        type: 'Impro Battle',
+        form: 2,
+        counts: [
+          { season: 1, count: 1 },
+          { season: 2, count: 1 },
+          { season: 3, count: 0 },
+        ],
+      },
+      {
+        type: 'Filmová improshow',
+        form: 2,
+        counts: [
+          { season: 1, count: 0 },
+          { season: 2, count: 2 },
+          { season: 3, count: 0 },
+        ],
+      },
+      {
+        type: 'Workshop',
+        counts: [
+          { season: 1, count: 0 },
+          { season: 2, count: 2 },
+          { season: 3, count: 1 },
+        ],
+      },
+    ];
+
+    const trainingStats = [
+      { id: 156, date: "2018-06-18", invited: 9 },
+      { id: 155, date: "2018-06-11", invited: 9 },
+      { id: 154, date: "2018-06-04", invited: 10 },
+      { id: 153, date: "2018-05-28", invited: 11 },
+      { id: 152, date: "2018-05-21", invited: 8 },
+      { id: 151, date: "2018-05-14", invited: 6 },
+      { id: 150, date: "2018-05-07", invited: 12 },
+      { id: 149, date: "2018-04-30", invited: 8 },
+      { id: 148, date: "2018-04-23", invited: 12 },
+      { id: 147, date: "2018-04-16", invited: 13 },
+      { id: 146, date: "2018-04-09", invited: 0 },
+      { id: 145, date: "2018-04-02", invited: 0 },
+      { id: 144, date: "2018-03-26", invited: 13 },
+      { id: 143, date: "2018-03-19", invited: 11 },
+      { id: 142, date: "2018-03-12", invited: 13 },
+      { id: 141, date: "2018-03-05", invited: 13 },
+      { id: 140, date: "2018-02-26", invited: 11 },
+      { id: 139, date: "2018-02-19", invited: 6 },
+      { id: 138, date: "2018-02-12", invited: 16 },
+      { id: 137, date: "2018-02-05", invited: 13 },
+      { id: 136, date: "2018-01-22", invited: 17 },
+      { id: 135, date: "2018-01-15", invited: 12 },
+      { id: 134, date: "2018-01-08", invited: 17 },
+      { id: 133, date: "2017-12-18", invited: 17 },
+      { id: 132, date: "2017-12-11", invited: 17 },
+      { id: 131, date: "2017-12-04", invited: 16 },
+      { id: 130, date: "2017-11-27", invited: 14 },
+      { id: 129, date: "2017-11-20", invited: 14 },
+      { id: 128, date: "2017-11-13", invited: 12 },
+      { id: 127, date: "2017-10-30", invited: 16 },
+      { id: 126, date: "2017-10-23", invited: 16 },
+      { id: 125, date: "2017-10-16", invited: 13 },
+      { id: 124, date: "2017-10-09", invited: 18 },
+      { id: 122, date: "2017-10-02", invited: 16 },
+      { id: 121, date: "2017-09-25", invited: 7 },
+      { id: 121, date: "2017-09-18", invited: 16 },
+      { id: 120, date: "2017-09-11", invited: 18 },
+      { id: 119, date: "2017-09-04", invited: 15 },
+      { id: 118, date: "2017-08-28", invited: 16 },
+      { id: 117, date: "2017-08-21", invited: 14 },
+      { id: 116, date: "2017-08-14", invited: 15 },
+      { id: 115, date: "2017-08-07", invited: 16 },
+      { id: 114, date: "2017-07-31", invited: 15 },
+      { id: 113, date: "2017-07-24", invited: 13 },
+      { id: 112, date: "2017-07-17", invited: 18 },
+      { id: 111, date: "2017-07-10", invited: 16 },
+      { id: 110, date: "2017-07-03", invited: 14 },
+      { id: 109, date: "2017-06-26", invited: 18 },
+      { id: 108, date: "2017-06-19", invited: 18 },
+      { id: 106, date: "2017-06-05", invited: 17 },
+      { id: 105, date: "2017-05-29", invited: 19 },
+      { id: 104, date: "2017-05-22", invited: 20 },
+      { id: 103, date: "2017-05-15", invited: 20 },
+      { id: 102, date: "2017-05-01", invited: 17 },
+      { id: 101, date: "2017-04-24", invited: 21 },
+      { id: 100, date: "2017-04-10", invited: 20 },
+      { id: 99, date: "2017-04-03", invited: 15 },
+      { id: 98, date: "2017-03-27", invited: 16 },
+      { id: 97, date: "2017-03-20", invited: 12 },
+      { id: 96, date: "2017-03-13", invited: 12 },
+      { id: 95, date: "2017-03-06", invited: 17 },
+      { id: 94, date: "2017-02-27", invited: 14 },
+      { id: 92, date: "2017-02-13", invited: 14 },
+      { id: 91, date: "2017-02-06", invited: 14 },
+      { id: 90, date: "2017-01-30", invited: 12 },
+      { id: 89, date: "2017-01-23", invited: 13 },
+      { id: 88, date: "2017-01-16", invited: 14 },
+      { id: 87, date: "2017-01-09", invited: 12 },
+      { id: 86, date: "2017-01-02", invited: 15 },
+      { id: 85, date: "2016-12-19", invited: 13 },
+      { id: 84, date: "2016-12-12", invited: 15 },
+      { id: 83, date: "2016-12-05", invited: 11 },
+      { id: 82, date: "2016-11-28", invited: 13 },
+      { id: 81, date: "2016-11-21", invited: 12 },
+      { id: 80, date: "2016-11-14", invited: 14 },
+      { id: 79, date: "2016-11-07", invited: 14 },
+      { id: 78, date: "2016-10-31", invited: 17 },
+      { id: 77, date: "2016-10-24", invited: 14 },
+      { id: 76, date: "2016-10-17", invited: 14 },
+      { id: 74, date: "2016-10-03", invited: 13 },
+      { id: 73, date: "2016-09-26", invited: 16 },
+      { id: 72, date: "2016-09-19", invited: 28 },
+      { id: 71, date: "2016-09-12", invited: 27 },
+      { id: 70, date: "2016-09-05", invited: 26 },
+      { id: 70, date: "2016-08-29", invited: 21 },
+      { id: 69, date: "2016-08-22", invited: 25 },
+      { id: 68, date: "2016-08-15", invited: 26 },
+      { id: 67, date: "2016-08-08", invited: 26 },
+      { id: 66, date: "2016-08-01", invited: 26 },
+      { id: 65, date: "2016-07-25", invited: 25 },
+      { id: 64, date: "2016-07-18", invited: 25 },
+      { id: 63, date: "2016-07-11", invited: 27 },
+      { id: 62, date: "2016-07-04", invited: 25 },
+      { id: 61, date: "2016-06-27", invited: 20 },
+      { id: 60, date: "2016-06-20", invited: 27 },
+      { id: 59, date: "2016-06-13", invited: 34 },
+      { id: 58, date: "2016-06-06", invited: 35 },
+      { id: 57, date: "2016-05-30", invited: 30 },
+      { id: 56, date: "2016-05-23", invited: 27 },
+      { id: 55, date: "2016-05-16", invited: 30 },
+      { id: 54, date: "2016-05-09", invited: 29 },
+      { id: 53, date: "2016-05-02", invited: 29 },
+      { id: 51, date: "2016-04-18", invited: 27 },
+      { id: 50, date: "2016-04-11", invited: 36 },
+      { id: 49, date: "2016-04-04", invited: 39 },
+      { id: 48, date: "2016-03-28", invited: 38 },
+      { id: 47, date: "2016-03-14", invited: 39 },
+      { id: 46, date: "2016-03-07", invited: 36 },
+      { id: 45, date: "2016-02-29", invited: 37 },
+      { id: 44, date: "2016-02-22", invited: 36 },
+      { id: 43, date: "2016-02-15", invited: 40 },
+      { id: 42, date: "2016-02-08", invited: 37 },
+      { id: 41, date: "2016-02-01", invited: 36 },
+      { id: 40, date: "2016-01-25", invited: 38 },
+      { id: 39, date: "2016-01-18", invited: 39 },
+      { id: 38, date: "2016-01-11", invited: 38 },
+      { id: 37, date: "2016-01-04", invited: 38 },
+      { id: 36, date: "2015-12-21", invited: 35 },
+      { id: 35, date: "2015-12-14", invited: 38 },
+      { id: 34, date: "2015-12-07", invited: 40 },
+      { id: 33, date: "2015-11-30", invited: 37 },
+      { id: 32, date: "2015-11-23", invited: 31 },
+      { id: 31, date: "2015-11-16", invited: 36 },
+      { id: 30, date: "2015-11-09", invited: 34 },
+      { id: 29, date: "2015-11-02", invited: 35 },
+      { id: 28, date: "2015-10-26", invited: 33 },
+      { id: 27, date: "2015-10-19", invited: 31 },
+      { id: 26, date: "2015-10-12", invited: 32 },
+      { id: 25, date: "2015-10-05", invited: 30 },
+      { id: 24, date: "2015-09-28", invited: 34 },
+      { id: 23, date: "2015-09-21", invited: 33 },
+      { id: 22, date: "2015-09-14", invited: 32 },
+      { id: 21, date: "2015-09-07", invited: 27 },
+      { id: 20, date: "2015-08-31", invited: 30 },
+      { id: 19, date: "2015-08-24", invited: 31 },
+      { id: 18, date: "2015-08-17", invited: 33 },
+      { id: 17, date: "2015-08-10", invited: 28 },
+      { id: 16, date: "2015-08-03", invited: 32 },
+      { id: 15, date: "2015-07-27", invited: 28 },
+      { id: 14, date: "2015-07-20", invited: 27 },
+      { id: 13, date: "2015-07-13", invited: 28 },
+      { id: 12, date: "2015-07-06", invited: 27 },
+      { id: 11, date: "2015-06-29", invited: 23 },
+      { id: 10, date: "2015-06-22", invited: 25 },
+      { id: 9, date: "2015-06-15", invited: 24 },
+      { id: 8, date: "2015-06-08", invited: 23 },
+      { id: 7, date: "2015-06-01", invited: 22 },
+      { id: 6, date: "2015-05-25", invited: 22 },
+      { id: 5, date: "2015-05-18", invited: 22 },
+      { id: 4, date: "2015-05-11", invited: 22 },
+      { id: 3, date: "2015-05-04", invited: 20 },
+      { id: 2, date: "2015-04-27", invited: 17 },
+      { id: 1, date: "2015-04-20", invited: 14 },
+    ];
+    trainingStats.reverse();
+  </script>
+</head>
+<body class="pt-3 pb-3">
+  <div class="container">
+    <h1 class="mb-3">
+      <img class="img-fluid logo" src="../logo/normal.png" />
+      Statistiky
+    </h1>
+    <div class="chart">
+      <div class="chart-content">
+        <h2>Počet narozených dětí</h2>
+        <div id="childrenBorn"></div>
+      </div>
+    </div>
+    <div class="chart">
+      <div class="chart-content">
+        <h2>Vývoj hraní podle Lokace</h2>
+        <p>Graf naznačuje na jakých lokacích nejčastěji hrajeme.</p>
+        <div id="publicProductionByLocation"></div>
+      </div>
+    </div>
+    <div class="chart">
+      <div class="chart-content">
+        <h2>Veřejná produkce</h2>
+        <p>Hraní podle improvizačního formátu. Data jsou z informací na webu.</p>
+        <div id="publicProduction"></div>
+      </div>
+    </div>
+    <div class="chart">
+      <div class="chart-content">
+        <h2>Typ formy</h2>
+        <p>Hraní podle improvizační formy. Data jsou z informací na webu.</p>
+        <div id="publicProductionForm"></div>
+      </div>
+    </div>
+    <div class="chart">
+      <div class="chart-content">
+        <h2>Pozvaných na trénink</h2>
+        <p>Vývoj počtu účastníků pozvaných na trénink. Data jsou vzata z interní skupiny na Facebooku. Během čtení grafu mysli na to, že ne vždy podařilo pozvat všechny členy skupiny.</p>
+        <div id="trainingInvites"></div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.7/highcharts.js"></script>
+  <script>
+    const getSeasonAxis = () => seasons.map(season => season.name);
+    const commonOptions = {
+      credits: {
+        enabled: false,
+      },
+      yAxis: {
+        title: {
+          text: 'Počet',
+        },
+      },
+      plotOptions: {
+        column: {
+          dataLabels: {
+            enabled: true,
+          },
+        },
+      },
+      chart: {
+        type: 'column',
+      },
+      title: {
+        text: '',
+      },
+      legend: {
+        align: 'right',
+        layout: 'vertical',
+        x: -30,
+        verticalAlign: 'top',
+        y: 25,
+        floating: true,
+      },
+    };
+
+    const renderChildrenBornChart = () => {
+      const childrenBornSeries = seasons.map((season) => {
+        const seasonCount = childrenBorn.find(sc => sc.season === season.id);
+        if (seasonCount) {
+          return seasonCount.count;
+        }
+        return 0;
+      });
+      Highcharts.chart('childrenBorn', Object.assign({}, commonOptions, {
+        chart: {
+          type: 'line',
+        },
+        xAxis: {
+          categories: getSeasonAxis(),
+          title: {
+            text: 'Sezóna',
+          },
+        },
+        series: [
+          {
+            name: 'Počet narozených dětí',
+            data: childrenBornSeries,
+          },
+        ],
+      }));
+
+    };
+
+    const renderPublicProductionChart = () => {
+      const totalSeries = {
+        type: 'spline',
+        name: 'Celkem',
+        visible: false,
+        data: seasons.map(season => production.reduce((aggr, productionLine) => {
+          const seasonCount = productionLine.counts.find(countSeason => countSeason.season === season.id);
+          if (seasonCount) {
+            return aggr + seasonCount.count;
+          }
+          return aggr;
+        }, 0)),
+      };
+      Highcharts.chart('publicProduction', Object.assign({}, commonOptions, {
+        xAxis: {
+          categories: getSeasonAxis(),
+          title: {
+            text: 'Sezóna',
+          },
+        },
+        series: [
+          ...production.map(productionLine => ({
+            name: productionLine.type,
+            data: productionLine.counts.map(seasonCount => seasonCount.count),
+          })),
+          totalSeries,
+        ],
+      }));
+    };
+
+    const renderPublicProductionByFormChart = () => {
+      const formSeries = forms.map((form) => ({
+        name: form.name,
+        data: seasons.map((season) => {
+          return production
+            .filter(prodLine => prodLine.form === form.id)
+            .reduce((aggr, productionLine) => {
+              const count = productionLine.counts
+                .find(seasonCount => seasonCount.season === season.id);
+
+              if (count) {
+                return aggr + count.count;
+              }
+              return 0;
+            }, 0)
+        }),
+      }));
+      Highcharts.chart('publicProductionForm', Object.assign({}, commonOptions, {
+        chart: {
+          type: 'spline',
+        },
+        xAxis: {
+          categories: getSeasonAxis(),
+          title: {
+            text: 'Sezóna',
+          },
+        },
+        series: formSeries,
+      }));
+    };
+
+    const renderPublicProductionByLocationChart = () => {
+      Highcharts.chart('publicProductionByLocation', Object.assign({}, commonOptions, {
+        chart: {
+          type: 'spline',
+        },
+        xAxis: {
+          categories: getSeasonAxis(),
+          title: {
+            text: 'Sezóna',
+          },
+        },
+        series: [
+          ...locations.map(locationLine => ({
+            name: locationLine.type,
+            data: locationLine.counts.map(seasonCount => seasonCount.count),
+          })),
+        ],
+      }));
+    };
+
+    const renderTrainingInvitesChart = () => {
+      const trainingSeries = trainingStats.slice().map((training) => {
+        const date = training.date.split('-').map(num => parseInt(num, 10));
+        return [
+          Date.UTC(date[0], date[1] - 1, date[2]),
+          training.invited,
+        ];
+      });
+
+      const attendanceAverageSeries = seasons.map((season) => {
+        const seasonTrainings = trainingStats.filter(training => training.date >= season.start && training.date < season.end);
+        const date = seasonTrainings[seasonTrainings.length - 1].date.split('-').map(num => parseInt(num, 10));
+        return [
+          Date.UTC(date[0], date[1] - 1, date[2]),
+          Math.round(seasonTrainings.reduce((aggr, training) => aggr + training.invited, 0) / seasonTrainings.length),
+        ];
+      });
+
+      const attendanceStart = moment('2015-04-20');
+      const attendanceStartDate = Date.UTC(2015, 3, 20);
+      const attendanceEndDate = moment(trainingStats[trainingStats.length - 1].date);
+      const attendanceMonthlyEndDate = attendanceEndDate.clone().add(6, 'months');
+
+      attendanceAverageSeries.unshift([
+        attendanceStartDate,
+        0,
+      ]);
+
+      const attendanceMonthlySeries = [];
+      const attendanceIterator = attendanceStart.clone();
+      while (!attendanceIterator.isAfter(attendanceMonthlyEndDate)) {
+        const attendanceIteratorStart = attendanceIterator.clone().subtract(6, 'months');
+        const seasonTrainings = trainingStats.filter(training =>
+          !attendanceIteratorStart.isAfter(training.date) &&
+          !attendanceIterator.isBefore(training.date)
+        );
+        const sum = seasonTrainings.reduce((aggr, training) => aggr + training.invited, 0);
+        attendanceMonthlySeries.push([
+          attendanceIterator.isAfter(attendanceEndDate) ? attendanceEndDate.valueOf() : attendanceIterator.valueOf(),
+          seasonTrainings.length > 0 ? Math.round(sum / seasonTrainings.length) : 0,
+        ])
+        attendanceIterator.add(6, 'month');
+      }
+
+      Highcharts.chart('trainingInvites', Object.assign({}, commonOptions, {
+        chart: {
+          type: 'area',
+        },
+        xAxis: {
+          max: attendanceEndDate.utc().valueOf(),
+          type: 'datetime',
+          title: {
+            text: 'Datum',
+          },
+        },
+        series: [
+          {
+            name: 'Pozvánky na tréninky',
+            data: trainingSeries,
+          },
+          {
+            name: 'Půlroční průměr',
+            data: attendanceMonthlySeries,
+            type: 'areaspline',
+            marker: {
+              enabled: false,
+            },
+          },
+          {
+            name: 'Sezóní průměr',
+            data: attendanceAverageSeries,
+            type: 'areaspline',
+            marker: {
+              enabled: false,
+            },
+          },
+        ],
+      }));
+    };
+
+    renderChildrenBornChart();
+    renderPublicProductionChart();
+    renderPublicProductionByFormChart();
+    renderPublicProductionByLocationChart();
+    renderTrainingInvitesChart();
+  </script>
+</body>
+</html>
