@@ -82,12 +82,14 @@ We describe our repertoir in [a separate document](https://github.com/just-paja/
 
 We would like to receive resources processable with open source applications. We expect your outputs to evolve in time as our group learns new stuff. Please avoid using proprietary file formats, like .psd (Adobe Photoshop), .ai (Adobe Illustrator). Use open standards, like [SVG](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics) or [XCF](https://en.wikipedia.org/wiki/XCF_(file_format)) instead.
 
-## Examples of output
+## Inspiration for output
 
 Please take a moment to have a look on few of Brand Guideline examples we like. Notice the level of specificity.
 
 * [Virgin Mobile brand manual](https://www.virginmobile.com.au/Global/virgin-mobile/static/images/style-guide/pdf/VirginMobileAUS-Print-Styleguide.pdf)
 * [Carthage college brand guidelines](https://www.carthage.edu/live/files/1358-brand-guidelinespdf)
 * [Boost Mobile brand manual](http://www.boostmobilebrand.com/images/common/boost-style-guide.pdf)
+* [Grafický manuál značky a vizuálního stylu Akademie věd České republiky](http://www.avcr.cz/opencms/export/sites/avcr.cz/.content/galerie-souboru/loga-av-media/AV-CR_iMANUAL_mini.pdf)
+* [Grafický manuál pro držitele značky KLASA](https://www.eklasa.cz/filespace/content/graficky_minimanual_znacky_klasa.pdf)
 
 We generally like to read simple documents - after all, this is a manual. No need to invest time into making the document cheerful folding picture book.
