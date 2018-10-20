@@ -18,6 +18,7 @@ footer {
 .page-content {
   background: #fff;
   padding-top: 1rem;
+  padding-bottom: 0.5rem;
 }
 
 .inverse a, .inverse a:visited {
@@ -100,19 +101,24 @@ footer {
   font-size: 30px;
 }
 
-#partners img.improliga {
-  width: 32px;
+#partners ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#partners .kudy-z-nudy {
-	height: 32px;
-	overflow: hidden;
-	display: block;
+#partners li:first-child {
+  border: none;
+  margin-left: 0;
+  padding-left: 0;
 }
-#partners .kudy-z-nudy img {
-	position:relative;
-	top: -16px;
+
+#partners li {
+  border-left: 1px solid rgba(0,0,0,0.1);
+  margin-left: 1rem;
+  padding-left: 1rem;
 }
+
 
 @media (min-width: 768px) {
   .text-center-sm {
