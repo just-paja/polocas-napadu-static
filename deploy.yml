@@ -7,7 +7,7 @@
       nginx_redirect_server_name: polocasnapadu.cz www.polocasnapadu.cz www.polocas-napadu.cz
       nginx_redirect_destination_domain: polocas-napadu.cz
     - role: practical-ansible.nginx-redirect
-      nginx_redirect_project_name: cz-polocas-napadu
+      nginx_redirect_project_name: cz-polocas-napadu-tema
       nginx_redirect_server_name: tema.polocasnapadu.cz tema.polocas-napadu.cz
       nginx_redirect_destination_url: https://docs.google.com/forms/d/e/1FAIpQLScYN3vszRp8ureZY11W-07DtrQtvuYA9tncJMvX2nsLfy4Lwg/viewform
     - role: practical-ansible.nginx-static
