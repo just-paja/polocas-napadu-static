@@ -75,6 +75,12 @@
         start: '2017-09',
         end: '2018-09',
       },
+      {
+        id: 4,
+        name: '2018/2019',
+        start: '2018-09',
+        end: '2019-09',
+      },
     ];
     const locations = [
       {
@@ -83,6 +89,7 @@
           { season: 1, count: 0 },
           { season: 2, count: 1 },
           { season: 3, count: 1 },
+          { season: 4, count: 1 },
         ],
       },
       {
@@ -91,6 +98,7 @@
           { season: 1, count: 8 },
           { season: 2, count: 18 },
           { season: 3, count: 9 },
+          { season: 4, count: 3 },
         ],
       },
       {
@@ -99,6 +107,7 @@
           { season: 1, count: 0 },
           { season: 2, count: 2 },
           { season: 3, count: 0 },
+          { season: 4, count: 0 },
         ],
       },
     ];
@@ -106,6 +115,7 @@
       { season: 1, count: 0 },
       { season: 2, count: 0 },
       { season: 3, count: 1 },
+      { season: 4, count: 0 },
     ];
     const production = [
       {
@@ -115,6 +125,7 @@
           { season: 1, count: 3 },
           { season: 2, count: 4 },
           { season: 3, count: 0 },
+          { season: 4, count: 1 },
         ],
       },
       {
@@ -124,6 +135,7 @@
           { season: 1, count: 1 },
           { season: 2, count: 3 },
           { season: 3, count: 3 },
+          { season: 4, count: 0 },
         ],
       },
       {
@@ -133,6 +145,7 @@
           { season: 1, count: 3 },
           { season: 2, count: 5 },
           { season: 3, count: 6 },
+          { season: 4, count: 1 },
         ],
       },
       {
@@ -142,6 +155,7 @@
           { season: 1, count: 0 },
           { season: 2, count: 2 },
           { season: 3, count: 0 },
+          { season: 4, count: 0 },
         ],
       },
       {
@@ -151,6 +165,7 @@
           { season: 1, count: 1 },
           { season: 2, count: 1 },
           { season: 3, count: 0 },
+          { season: 4, count: 0 },
         ],
       },
       {
@@ -160,6 +175,17 @@
           { season: 1, count: 0 },
           { season: 2, count: 2 },
           { season: 3, count: 0 },
+          { season: 4, count: 1 },
+        ],
+      },
+      {
+        type: 'Rozhlasová hra',
+        form: 1,
+        counts: [
+          { season: 1, count: 0 },
+          { season: 2, count: 0 },
+          { season: 3, count: 0 },
+          { season: 4, count: 1 },
         ],
       },
       {
@@ -168,6 +194,7 @@
           { season: 1, count: 0 },
           { season: 2, count: 2 },
           { season: 3, count: 1 },
+          { season: 4, count: 2 },
         ],
       },
     ];
@@ -344,16 +371,16 @@
     </div>
     <div class="chart">
       <div class="chart-content">
-        <h2>Vývoj hraní podle Lokace</h2>
-        <p>Graf naznačuje na jakých lokacích nejčastěji hrajeme.</p>
-        <div id="publicProductionByLocation"></div>
+        <h2>Veřejná produkce</h2>
+        <p>Hraní podle improvizačního formátu. Data jsou z informací na webu.</p>
+        <div id="publicProduction"></div>
       </div>
     </div>
     <div class="chart">
       <div class="chart-content">
-        <h2>Veřejná produkce</h2>
-        <p>Hraní podle improvizačního formátu. Data jsou z informací na webu.</p>
-        <div id="publicProduction"></div>
+        <h2>Vývoj hraní podle Lokace</h2>
+        <p>Graf naznačuje na jakých lokacích nejčastěji hrajeme.</p>
+        <div id="publicProductionByLocation"></div>
       </div>
     </div>
     <div class="chart">
@@ -525,14 +552,16 @@
         ];
       });
 
-      const attendanceAverageSeries = seasons.map((season) => {
-        const seasonTrainings = trainingStats.filter(training => training.date >= season.start && training.date < season.end);
-        const date = seasonTrainings[seasonTrainings.length - 1].date.split('-').map(num => parseInt(num, 10));
-        return [
-          Date.UTC(date[0], date[1] - 1, date[2]),
-          Math.round(seasonTrainings.reduce((aggr, training) => aggr + training.invited, 0) / seasonTrainings.length),
-        ];
-      });
+      const attendanceAverageSeries = seasons
+        .map(season => trainingStats.filter(training => training.date >= season.start && training.date < season.end))
+        .filter(seasonTrainings => seasonTrainings.length > 0)
+        .map(seasonTrainings => {
+          const date = seasonTrainings[seasonTrainings.length - 1].date.split('-').map(num => parseInt(num, 10));
+          return [
+            Date.UTC(date[0], date[1] - 1, date[2]),
+            Math.round(seasonTrainings.reduce((aggr, training) => aggr + training.invited, 0) / seasonTrainings.length),
+          ];
+        });
 
       const attendanceStart = moment('2015-04-20');
       const attendanceStartDate = Date.UTC(2015, 3, 20);
