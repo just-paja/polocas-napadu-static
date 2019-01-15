@@ -21,6 +21,10 @@
       nginx_redirect_server_name: internal.polocasnapadu.cz internal.polocas-napadu.cz
       nginx_redirect_destination_url: https://sites.google.com/polocas-napadu.cz/polocas-wiki
       nginx_redirect_status: 302
+    - role: practical-ansible.nginx-redirect
+      nginx_redirect_project_name: cz-polocas-napadu-eshop
+      nginx_redirect_server_name: eshop.polocasnapadu.cz
+      nginx_redirect_destination_url: eshop.polocas-napadu.cz
     - role: practical-ansible.nginx-static
       nginx_static_project_name: cz-polocas-napadu
       nginx_static_server_name: polocas-napadu.cz
