@@ -9,12 +9,12 @@
     - role: practical-ansible.nginx-redirect
       nginx_redirect_project_name: cz-polocas-napadu-tema
       nginx_redirect_server_name: tema.polocasnapadu.cz tema.polocas-napadu.cz temata.polocasnapadu.cz temata.polocas-napadu.cz
-      nginx_redirect_destination_url: https://interactive.polocas-napadu.cz/inspirations/?apiUrl=https://api.polocas-napadu.cz/graphql#/match/1
+      nginx_redirect_destination_url: https://interactive.polocas-napadu.cz/inspirations/?apiUrl=https://api.polocas-napadu.cz/graphql#/match/3
       nginx_redirect_status: 302
     - role: practical-ansible.nginx-redirect
       nginx_redirect_project_name: cz-polocas-napadu-rezervace
       nginx_redirect_server_name: rezervace.polocasnapadu.cz rezervace.polocas-napadu.cz
-      nginx_redirect_destination_url: https://docs.google.com/forms/d/e/1FAIpQLSc46T3ueIkp4Yn-J0FkS8HGW68fXBRU3czhNFyWNrteToRPBw/viewform?usp=sf_link
+      nginx_redirect_destination_url: https://docs.google.com/forms/d/e/1FAIpQLScgTnXzlKZHjYkQDl2-zT434zB0oVkuFEn7jFmKbBKUdyiE5g/viewform?usp=sf_link
       nginx_redirect_status: 302
     - role: practical-ansible.nginx-redirect
       nginx_redirect_project_name: cz-polocas-napadu-internal
