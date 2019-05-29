@@ -14,7 +14,7 @@
     - role: practical-ansible.nginx-redirect
       nginx_redirect_project_name: cz-polocas-napadu-rezervace
       nginx_redirect_server_name: rezervace.polocasnapadu.cz rezervace.polocas-napadu.cz
-      nginx_redirect_destination_url: https://docs.google.com/forms/d/e/1FAIpQLScgTnXzlKZHjYkQDl2-zT434zB0oVkuFEn7jFmKbBKUdyiE5g/viewform?usp=sf_link
+      nginx_redirect_destination_url: https://docs.google.com/forms/d/e/1FAIpQLSc3RPV_OBlEOE7GpDmHpBA4mEN4YSsq5FgtO6LnMGRUG_6Vzg/viewform?usp=sf_link
       nginx_redirect_status: 302
     - role: practical-ansible.nginx-redirect
       nginx_redirect_project_name: cz-polocas-napadu-internal
