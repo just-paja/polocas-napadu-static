@@ -15,14 +15,10 @@
     body {
       text-align: center;
       padding-top: 5rem;
+      min-width: 560px;
     }
     h1 {
-      position: fixed;
-      z-index: 100;
       text-align: center;
-      left: 0;
-      right: 0;
-      top: 0;
       background: rgba(255,255,255, .95);
       padding: 1rem 0;
     }
@@ -31,17 +27,21 @@
     }
     .logo {
       width: 10rem;
-      left: 1rem;
-      position: absolute;
-      top: 1rem;
     }
     .chart {
-      height: 100%;
+      height: 100vh;
       display: flex;
       align-items: center;
     }
     .chart-content {
+      height: 70vh;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
       width: 100%;
+    }
+    .chart-content > div {
+      flex-grow: 1;
     }
   </style>
 
@@ -98,7 +98,7 @@
           { season: 1, count: 8 },
           { season: 2, count: 18 },
           { season: 3, count: 9 },
-          { season: 4, count: 6 },
+          { season: 4, count: 12 },
         ],
       },
       {
@@ -125,8 +125,12 @@
           { season: 1, count: 3 },
           { season: 2, count: 4 },
           { season: 3, count: 0 },
-          { season: 4, count: 1 },
+          { season: 4, count: 3 },
         ],
+        shows: [
+          { season: 4, date: '2019-03-08', facebookAttend: 33, facebookMaybe: 71, actual: 55, reservations: 46 },
+          { season: 4, date: '2019-06-07', facebookAttend: 21, facebookMaybe: 45, actual: 29, reservations: 20 },
+        ]
       },
       {
         type: 'Improshow',
@@ -144,9 +148,19 @@
         counts: [
           { season: 1, count: 3 },
           { season: 2, count: 5 },
-          { season: 3, count: 6 },
-          { season: 4, count: 3 },
+          { season: 3, count: 1 },
+          { season: 4, count: 5 },
         ],
+        shows: [
+          { season: 3, date: '2017-11-06', facebookAttend: 46, facebookMaybe: 77, actual: 60, reservations: 0 },
+          { season: 3, date: '2017-12-08', facebookAttend: 37, facebookMaybe: 93, actual: 45, reservations: 0 },
+          { season: 3, date: '2018-02-08', facebookAttend: 37, facebookMaybe: 83, actual: 45, reservations: 0 },
+          { season: 3, date: '2018-03-29', facebookAttend: 29, facebookMaybe: 57, actual: 50, reservations: 0 },
+          { season: 3, date: '2018-06-15', facebookAttend: 19, facebookMaybe: 47, actual: 35, reservations: 0 },
+          { season: 4, date: '2018-11-09', facebookAttend: 47, facebookMaybe: 78, actual: 80, reservations: 0 },
+          { season: 4, date: '2019-02-08', facebookAttend: 30, facebookMaybe: 89, actual: 72, reservations: 65 },
+          { season: 4, date: '2019-05-23', facebookAttend: 33, facebookMaybe: 84, actual: 55, reservations: 51 },
+        ]
       },
       {
         type: 'Úplně obyčejné zprávy',
@@ -177,6 +191,9 @@
           { season: 3, count: 0 },
           { season: 4, count: 1 },
         ],
+        shows: [
+          { season: 4, date: '2018-10-25', facebookAttend: 21, facebookMaybe: 57, actual: 30, reservations: 0 },
+        ]
       },
       {
         type: 'Rozhlasová hra',
@@ -185,8 +202,13 @@
           { season: 1, count: 0 },
           { season: 2, count: 0 },
           { season: 3, count: 0 },
-          { season: 4, count: 1 },
+          { season: 4, count: 3 },
         ],
+        shows: [
+          { season: 4, date: '2018-08-27', facebookAttend: 25, facebookMaybe: 49, actual: 30, reservations: 0 },
+          { season: 4, date: '2018-10-25', facebookAttend: 21, facebookMaybe: 57, actual: 30, reservations: 0 },
+          { season: 4, date: '2019-06-18', facebookAttend: 0, facebookMaybe: 0, actual: 7, reservations: 0 },
+        ]
       },
       {
         type: 'Ostrov, který jsem přehlíd',
@@ -197,6 +219,9 @@
           { season: 3, count: 0 },
           { season: 4, count: 1 },
         ],
+        shows: [
+          { season: 4, date: '2018-12-19', facebookAttend: 26, facebookMaybe: 62, actual: 34, reservations: 0 },
+        ]
       },
       {
         type: 'Workshop',
@@ -204,12 +229,33 @@
           { season: 1, count: 0 },
           { season: 2, count: 2 },
           { season: 3, count: 1 },
-          { season: 4, count: 2 },
+          { season: 4, count: 3 },
         ],
       },
     ];
-
     const trainingStats = [
+      { id: 204, date: '2019-06-18', invited: 15 },
+      { id: 203, date: '2019-06-11', invited: 17 },
+      { id: 202, date: '2019-06-04', invited: 18 },
+      { id: 200, date: '2019-05-28', invited: 17 },
+      { id: 201, date: '2019-05-21', invited: 12 },
+      { id: 199, date: '2019-05-14', invited: 18 },
+      { id: 198, date: '2019-05-07', invited: 13 },
+      { id: 197, date: '2019-04-30', invited: 10 },
+      { id: 196, date: '2019-04-23', invited: 18 },
+      { id: 195, date: '2019-04-16', invited: 16 },
+      { id: 194, date: '2019-04-09', invited: 14 },
+      { id: 193, date: '2019-04-02', invited: 17 },
+      { id: 192, date: '2019-03-26', invited: 10 },
+      { id: 191, date: '2019-03-19', invited: 14 },
+      { id: 190, date: '2019-03-12', invited: 18 },
+      { id: 189, date: '2019-03-05', invited: 16 },
+      { id: 188, date: '2019-02-26', invited: 10 },
+      { id: 187, date: '2019-02-19', invited: 10 },
+      { id: 186, date: '2019-02-12', invited: 16 },
+      { id: 185, date: '2019-02-05', invited: 17 },
+      { id: 184, date: '2019-01-29', invited: 15 },
+      { id: 183, date: '2019-01-22', invited: 12 },
       { id: 182, date: "2019-01-08", invited: 16 },
       { id: 181, date: "2018-12-18", invited: 19 },
       { id: 180, date: "2018-12-11", invited: 18 },
@@ -389,13 +435,985 @@
       { id: 2, date: "2015-04-27", invited: 17 },
       { id: 1, date: "2015-04-20", invited: 14 },
     ];
+    const posts = [
+      {
+        datetime: '2019-06-06T13:21',
+        annotation: 'Dámy a pánové, vážení fanoušci, milí hosté, drahá zvířátka, velevážení mimozemšťané, dovolte nám připomenout, že již zítra hrajeme v Divadle Bez Hranic naši jedinečnou Improshow Motel u Grygara. Všichni jste srdečně zváni! Možná jste viděli naše zápasy, možná jste viděli předchozí motel, ale ještě nikdy jste neviděli Motel u Grygara. Ponořte se zítra spolu s námi do zábavného světa momentální inspirace :-) Rezervace míst v plném proudu: ➡️ https://rezervace.polocas-napadu.cz ⬅️',
+        type: 'Odkaz',
+        public: 124,
+        organic: 124,
+        paid: 0,
+        clicks: 7,
+        reactions: 1
+      },
+      {
+        datetime: '2019-06-04T11:53',
+        annotation: 'V předchozích dnech jsme vám představili herce, které uvidíte již tento pátek v naší improshow Motel u Grygara. Sestavu uzavírá Víťa, který rovněž zazářil již v minulém Dvouhodinovém Motelu. Jak to dopadne tentokrát? Přijďte se pobavit v pátek do divadla, začínáme 19:30, místo si můžete rezervovat klidně hned teď na https://rezervace.polocas-napadu.cz 😃',
+        type: 'Fotka',
+        public: 571,
+        organic: 571,
+        paid: 0,
+        clicks: 70,
+        reactions: 44
+      },
+      {
+        datetime: '2019-06-03T11:48',
+        annotation: 'Motel u Grygara ukrývá nesčetná tajemství. Zatím ale nikdo neví, jaká tajemství to jsou. Každé představení je premiéra i derniéra zároveň. Jaká bude postava, kterou ztvární Marcel? To zatím neví ani on sám 😏 Hrajeme již tento pátek, 19:30, Divadlo Bez Hranic 🎭 Rezervujte si nezávazně své místo v hledišti na ➡️ https://rezervace.polocas-napadu.cz ⬅️',
+        type: 'Fotka',
+        public: 601,
+        organic: 601,
+        paid: 0,
+        clicks: 142,
+        reactions: 59
+      },
+      {
+        datetime: '2019-06-02T13:48',
+        annotation: 'Již v pátek opět hrajeme! V příbězích z motelového pokoje, které vznikají na místě na základě momentální inspirace, se poprvé objeví Evka. 🥳 Přijďte se pobavit, těšíme se na vás v Divadle Bez Hranic ➡️ Motel u Grygara ⬅️',
+        type: 'Fotka',
+        public: 237,
+        organic: 237,
+        paid: 0,
+        clicks: 17,
+        reactions: 15
+      },
+      {
+        datetime: '2019-06-01T11:37',
+        annotation: 'Pavel se nám v motelech zabydlel, stejně jako Janča, takže jej budete moci vidět v akci již příští pátek v příbězích z motelového pokoje, které budou vznikat přímo před zraky vás, diváků. 🤓 Klik na událost: ➡️ Motel u Grygara ⬅️',
+        type: 'Fotka',
+        public: 306,
+        organic: 306,
+        paid: 0,
+        clicks: 53,
+        reactions: 25
+      },
+      {
+        datetime: '2019-05-31T11:31',
+        annotation: 'Janča už je ostřílená obyvatelka motelů, před pár měsíci jste ji mohli vidět v Dvouhodinovém motelu a nyní se na divadelní prkna vrací znovu, tentokráte v Motelu u Grygara. 🏨 Těšíme se již příští pátek v Divadle Bez Hranic! Klik na událost: ➡️ Motel u Grygara ⬅️',
+        type: 'Fotka',
+        public: 522,
+        organic: 522,
+        paid: 0,
+        clicks: 66,
+        reactions: 44
+      },
+      {
+        datetime: '2019-05-30T11:28',
+        annotation: 'Minulý týden si odbyl svůj první improzápas a už příští týden jej budete mít možnost vidět v naší longformě Motel. Co bude mít Ondráš za lubem nebo v mrazáku? Nevíme, příběhy vznikají na místě z momentální inspirace :-) Klik na událost: ➡️ Motel u Grygara ⬅️',
+        type: 'Fotka',
+        public: 379,
+        organic: 379,
+        paid: 0,
+        clicks: 47,
+        reactions: 30
+      },
+      {
+        datetime: '2019-05-29T22:14',
+        annotation: 'Jedeme jak fretky! Minulý týden improzápas, příští týden náš jedinečný Motel, dorazíte? 🙃 V následujících dnech zde na stránce postupně představíme, kdo bude hrát. 💡',
+        type: 'Odkaz',
+        public: 143,
+        organic: 143,
+        paid: 0,
+        clicks: 6,
+        reactions: 0,
+      },
+      {
+        datetime: '2019-05-28T21:14',
+        annotation: 'Tramtadadá! Dneska se slaví 200. trénink v historii Poločasu nápadu!💡',
+        type: 'Fotka',
+        public: 293,
+        organic: 293,
+        paid: 0,
+        clicks: 65,
+        reactions: 26
+      },
+      {
+        datetime: '2019-05-28T19:55',
+        annotation: 'Hádejte, kolikátý trénink dnes slavíme? 🥳',
+        type: 'Video',
+        public: 193,
+        organic: 193,
+        paid: 0,
+        clicks: 29,
+        reactions: 11
+      },
+      {
+        datetime: '2019-05-26T21:48',
+        annotation: 'Děkujeme všem divákům našeho čtvrtečního improzápasu za podporu, byli jste skvělí 😍 Po posledním zápase této sezóny přichází i poslední čistě poločasí představení - 7.6., Divadlo Bez Hranic, jste srdečně zváni 😊',
+        type: 'Fotka',
+        public: 245,
+        organic: 245,
+        paid: 0,
+        clicks: 10,
+        reactions: 17
+      },
+      {
+        datetime: '2019-05-23T19:25',
+        annotation: 'Jsme ready! 😁',
+        type: 'Fotka',
+        public: 246,
+        organic: 246,
+        paid: 0,
+        clicks: 14,
+        reactions: 19
+      },
+      {
+        datetime: '2019-05-22T08:13',
+        annotation: 'Jak dopadne zítřejší improzápas? My máme jasno! 💪 Pusťte si zvuk 😁 A přijďte zítra do divadla na Poločas nápadu vs RACI Těšíme se! Rezervace stále běží, ale místa se rychle plní, tak si raději taky jedno chytněte na https://rezervace.polocas-napadu.cz',
+        type: 'Video',
+        public: 1428,
+        organic: 1428,
+        paid: 0,
+        clicks: 314,
+        reactions: 61
+      },
+      {
+        datetime: '2019-05-21T20:14',
+        annotation: 'Tak Raci nás prý ve čtvrtek chtějí rozdrtit 🧐 To se ještě uvidí! 😛 Improzápas již ve čtvrtek, 19:30, Divadlo Bez Hranic Vstupenky rezervujte na ▶️ http://rezervace.polocas-napadu.cz ◀️ :-) https://www.facebook.com/story.php?story_fbid=2240935915989923&id=169400853143450',
+        type: 'Sdílené video',
+        public: 193,
+        organic: 193,
+        paid: 0,
+        clicks: 23,
+        reactions: 2
+      },
+      {
+        datetime: '2019-05-19T13:00',
+        annotation: 'Asi to už všichni víte a chystáte se tam, ale kdyby náhodou ne - ve čtvrtek 23.5. hrajeme! Zápas na domácí půdě s elektronickou tužkou a živým rozborem přímo na místě. Přijďte :-) Rezervace už jsou v plném proudu na ➡️ https://rezervace.polocas-napadu.cz ⬅️',
+        type: 'Fotka',
+        public: 198,
+        organic: 198,
+        paid: 0,
+        clicks: 1,
+        reactions: 8
+      },
+      {
+        datetime: '2019-05-17T13:00',
+        annotation: 'Naši hvězdnou sestavu do zápasu proti týmu Raci uzavírá zkušený Marcel. Uvidíme večer Marcelovu otočku? Nechme se překvapit. :-) Již ve čtvrtek 23.5. v 19:30 v Divadle Bez Hranic ➡️ Poločas nápadu vs RACI ⬅️',
+        type: 'Video',
+        public: 392,
+        organic: 392,
+        paid: 0,
+        clicks: 38,
+        reactions: 19
+      },
+      {
+        datetime: '2019-05-16T13:00',
+        annotation: 'Již příští čtvrtek hrajeme! Další, koho vysíláme do improzápasu proti Rakům, je ostřílený Ondra. Dorazíte taky? Klik na událost ➡️ Poločas nápadu vs RACI ⬅️ 23.5. v 19:30, Divadlo Bez Hranice',
+        type: 'Video',
+        public: 524,
+        organic: 524,
+        paid: 0,
+        clicks: 83,
+        reactions: 25
+      },
+      {
+        datetime: '2019-05-15T13:00',
+        annotation: 'Již příští týden si Ondřej odbude svou improvizační premiéru, a to rovnou v zápase! Klik na událost ➡️ Poločas nápadu vs RACI ⬅️ Přijďte nám držet palce příští čtvrtek večer 🤞',
+        type: 'Video',
+        public: 305,
+        organic: 305,
+        paid: 0,
+        clicks: 48,
+        reactions: 15
+      },
+      {
+        datetime: '2019-05-14T13:00',
+        annotation: 'Jediná žena, která se tentokrát odvážila stanout proti nám v improzápase, je Hannka. Je to pro ni navíc první improzápas v životě. Slitování sice mít nebudeme, ale tak trochu držíme palce. 😜',
+        type: 'Video',
+        public: 306,
+        organic: 306,
+        paid: 0,
+        clicks: 94,
+        reactions: 19
+      },
+      {
+        datetime: '2019-05-13T14:37',
+        annotation: 'Dalším nebojácným račím hráčem, který se proti nám postaví je Obelix! Uvidíme, jak si bez Asterixe a Idefixe poradí v improzápasixe s Poločasem nápaduxem. ➡️ Poločas nápadu vs RACI ⬅️ Hrajeme 23.5. v 19:30 v Divadle Bez Hranic',
+        type: 'Video',
+        public: 340,
+        organic: 340,
+        paid: 0,
+        clicks: 71,
+        reactions: 31
+      },
+      {
+        datetime: '2019-05-12T18:14',
+        annotation: 'Ou jé, ou jé, ou jé! Hádejte, kolik nás jé? 🥳 Naším čtyřstým fanouškem je Ondra Skaroupka a my si ho tímto píšeme na VIP seznam a na některém z příštích představení v Divadle Bez Hranic má od nás 2 vstupenky zdarma! Potkáme se třeba hned 23.5. na improzápase Poločas nápadu vs RACI?',
+        type: 'Fotka',
+        public: 907,
+        organic: 907,
+        paid: 0,
+        clicks: 120,
+        reactions: 34
+      },
+      {
+        datetime: '2019-05-12T15:00',
+        annotation: 'Představujeme prvního račího vyzyvatele Matěj Stehlík✊ ➡️ Poločas nápadu vs RACI ⬅️ Hrajeme 23.5. v 19:30, Divadlo Bez Hranic',
+        type: 'Video',
+        public: 310,
+        organic: 310,
+        paid: 0,
+        clicks: 57,
+        reactions: 19
+      },
+      {
+        datetime: '2019-05-08T14:25',
+        annotation: 'Stále rosteme :-) Vítáme mezi námi Michala!',
+        type: 'Fotka',
+        public: 204,
+        organic: 204,
+        paid: 0,
+        clicks: 15,
+        reactions: 13
+      },
+      {
+        datetime: '2019-05-08T14:22',
+        annotation: 'Už se to blíží! 💪 Ladíme formu a za dva týdny zápasíme opět na domácí půdě, v Divadle Bez Hranic. Přijdete taky? :-) ➡️ Poločas nápadu vs RACI ⬅️',
+        type: 'Fotka',
+        public: 203,
+        organic: 203,
+        paid: 0,
+        clicks: 9,
+        reactions: 6
+      },
+      {
+        datetime: '2019-05-05T10:49',
+        annotation: 'Žezlo nápadu, náš zdroj vesmírné impro inspirace 🧙‍♂️ Jedno žezlo vládne všem, je to žezlo nápadu, my hrajeme lidem všem, jsme Poločas nápadu.',
+        type: 'Fotka',
+        public: 511,
+        organic: 511,
+        paid: 0,
+        clicks: 119,
+        reactions: 30
+      },
+      {
+        datetime: '2019-05-02T22:00',
+        annotation: 'Celý improsvět přijel do Ostravy!!! Improtřesk, největší impro akce v celém vesmíru a my jsme opět u toho :-)',
+        type: 'Fotka',
+        public: 269,
+        organic: 269,
+        paid: 0,
+        clicks: 44,
+        reactions: 26
+      },
+      {
+        datetime: '2019-04-07T00:15',
+        annotation: 'Tento víkend se soustředíme! Longformy, blázinec, Time\'s up, grilování, přímotopy, pohoda :-)',
+        type: 'Fotka',
+        public: 236,
+        organic: 236,
+        paid: 0,
+        clicks: 55,
+        reactions: 15
+      },
+      {
+        datetime: '2019-03-29T13:00',
+        annotation: 'Honza Formsteinn! Karaoke je super způsob, jak v sobě znovuobjevit talent na cizí jazyky.',
+        type: 'Video',
+        public: 222,
+        organic: 222,
+        paid: 0,
+        clicks: 24,
+        reactions: 10
+      },
+      {
+        datetime: '2019-03-28T10:49',
+        annotation: 'Marcel Mareš! Tak jsme včera trénovali na improvizovaný zpěv :-) I když to teda nebylo tak úplně improvizované a někdy to nebyl ani tak úplně zpěv. Ale sranda to byla, to jo :)',
+        type: 'Video',
+        public: 184,
+        organic: 184,
+        paid: 0,
+        clicks: 15,
+        reactions: 9
+      },
+      {
+        datetime: '2019-03-24T20:03',
+        annotation: 'Dvouhodinový motel',
+        type: 'Fotka',
+        public: 243,
+        organic: 243,
+        paid: 0,
+        clicks: 106,
+        reactions: 5
+      },
+      {
+        datetime: '2019-03-24T12:41',
+        annotation: 'Recepční motelu toho za svůj život zažil opravdu hodně 🤓 Takový byl Dvouhodinový MOTEL a těšíme se příště!',
+        type: 'Fotka',
+        public: 208,
+        organic: 208,
+        paid: 0,
+        clicks: 14,
+        reactions: 11
+      },
+      {
+        datetime: '2019-03-23T13:35',
+        annotation: 'Když malí plavci moc neplavou 🤭',
+        type: 'Fotka',
+        public: 213,
+        organic: 213,
+        paid: 0,
+        clicks: 10,
+        reactions: 5
+      },
+      {
+        datetime: '2019-03-21T15:41',
+        annotation: 'Správný šéf! (Foto z představení Dvouhodinový motel)',
+        type: 'Fotka',
+        public: 198,
+        organic: 198,
+        paid: 0,
+        clicks: 29,
+        reactions: 12
+      },
+      {
+        datetime: '2019-03-19T15:31',
+        annotation: 'Když postavě rupnou nervy..',
+        type: 'Fotka',
+        public: 232,
+        organic: 232,
+        paid: 0,
+        clicks: 37,
+        reactions: 16
+      },
+      {
+        datetime: '2019-03-17T14:04',
+        annotation: 'Jestli víš, jak to myslím 😉😉',
+        type: 'Fotka',
+        public: 248,
+        organic: 248,
+        paid: 0,
+        clicks: 40,
+        reactions: 19
+      },
+      {
+        datetime: '2019-03-16T17:16',
+        annotation: 'Poločas nápadu',
+        type: 'Fotka',
+        public: 1,
+        organic: 1,
+        paid: 0,
+        clicks: 8,
+        reactions: 7
+      },
+      {
+        datetime: '2019-03-16T16:55',
+        annotation: 'Kdo je víc? 🤔',
+        type: 'Fotka',
+        public: 263,
+        organic: 263,
+        paid: 0,
+        clicks: 32,
+        reactions: 19
+      },
+      {
+        datetime: '2019-03-12T19:30',
+        annotation: 'Když se nás na pravidelném úterním tréninku sejde tolik, je to vždycky paráda 🤩',
+        type: 'Fotka',
+        public: 396,
+        organic: 396,
+        paid: 0,
+        clicks: 146,
+        reactions: 12
+      },
+      {
+        datetime: '2019-03-11T08:38',
+        annotation: 'Ten pocit, když zjistíte, že je pondělí..',
+        type: 'Video',
+        public: 179,
+        organic: 179,
+        paid: 0,
+        clicks: 21,
+        reactions: 6
+      },
+      {
+        datetime: '2019-03-08T18:38',
+        annotation: 'Držíme vám místa! 🤩 Dnes 19:30, Divadlo Bez Hranic',
+        type: 'Fotka',
+        public: 236,
+        organic: 236,
+        paid: 0,
+        clicks: 39,
+        reactions: 10
+      },
+      {
+        datetime: '2019-03-08T13:05',
+        annotation: '* Ten pocit, když je pátek odpoledne a vám přijde milion emailů. 😛 Když v pátek přes den práce máte kotel Relax zajistí Dvouhodinový MOTEL Za Poločasí impro zábavou přijďte dnes večer, místa ještě jsou',
+        type: 'Video',
+        public: 535,
+        organic: 535,
+        paid: 0,
+        clicks: 22,
+        reactions: 4
+      },
+      {
+        datetime: '2019-03-07T08:00',
+        annotation: 'Ten pocit, kdy skáčete radostí, protože se nemůže dočkat, až budete v pátek hrát v představení Dvouhodinový MOTEL. Přijďte se podívat, místa ještě jsou :-) Rezervujte si to své na https://rezervace.polocas-napadu.cz',
+        type: 'Video',
+        public: 163,
+        organic: 163,
+        paid: 0,
+        clicks: 22,
+        reactions: 4
+      },
+      {
+        datetime: '2019-03-06T00:10',
+        annotation: 'Rosteme jako z vody! Vítáme mezi stálými členy již čtvrtého člověka, kterému můžeme říkat Pája :-) Na fotografii je Pája zachycena zatímco jí Pája podává její věci, zatímco Pája stojí opodál a Pája tam vůbec není.',
+        type: 'Fotka',
+        public: 313,
+        organic: 313,
+        paid: 0,
+        clicks: 48,
+        reactions: 21
+      },
+      {
+        datetime: '2019-03-05T14:13',
+        annotation: 'Už v pátek hrajeme! :-) 😛',
+        type: 'Fotka',
+        public: 150,
+        organic: 150,
+        paid: 0,
+        clicks: 48,
+        reactions: 4
+      },
+      {
+        datetime: '2019-03-03T17:52',
+        annotation: 'Poločas nápadu',
+        type: 'Odkaz',
+        public: 114,
+        organic: 114,
+        paid: 0,
+        clicks: 1,
+        reactions: 0
+      },
+      {
+        datetime: '2019-03-01T13:00',
+        annotation: 'Jeden motel, tři příběhy, tři dvojice postav. Zatím jsme vám představili 5 herců a hereček, které uvidíte příští pátek a hereckou sestavu uzavírá do šestice Kačka. :-) Přijďte se příští pátek uvolnit a pobavit při sledování netradičních patálií v motelovém pokoji. 🙃 Klik: ➡️ Dvouhodinový MOTEL ⬅️',
+        type: 'Fotka',
+        public: 210,
+        organic: 210,
+        paid: 0,
+        clicks: 26,
+        reactions: 14
+      },
+      {
+        datetime: '2019-02-28T13:00',
+        annotation: '🚪 + 🛌 + 🛋️ + 📺 = motelový pokoj 3 x (🚪 + 🛌 + 🛋️ + 📺) = motel 3 x (🚪 + 🛌 + 🛋️ + 📺) + 🎭 + 💡 = Dvouhodinový MOTEL Hrajeme už příští pátek, přijďte do Divadla Bez Hranic :-) ⬆️',
+        type: 'Fotka',
+        public: 634,
+        organic: 634,
+        paid: 0,
+        clicks: 114,
+        reactions: 59
+      },
+      {
+        datetime: '2019-02-27T00:17',
+        annotation: 'Tak toto byla skvělá novinka na dnešním pravidelném tréninku - vytváření postav na základě vůní! Jen teda kvůli výraznému zastoupení skořice, vanilky a perníkového koření byla polovina z nás cukráři :D',
+        type: 'Fotka',
+        public: 223,
+        organic: 223,
+        paid: 0,
+        clicks: 62,
+        reactions: 11
+      },
+      {
+        datetime: '2019-02-26T13:00',
+        annotation: 'Po dlouhé době se vracíme k formátu improshow, se kterým jsme před několika lety vlastně začínali - Motel. Již příští pátek se na všechny těšíme v Divadle Bez Hranic 🤩 Klik na událost 👉 Dvouhodinový MOTEL 👈',
+        type: 'Fotka',
+        public: 329,
+        organic: 329,
+        paid: 0,
+        clicks: 88,
+        reactions: 42
+      },
+      {
+        datetime: '2019-02-24T13:00',
+        annotation: 'Stěny by mohly vyprávět.. Tentokrát ale budeme vyprávět my. Prožijte s námi 3 příběhy 3 dvojic ze 3 motelových pokojů z jednoho motelu. 8.3 v Divadle Bez Hranic 🛋️ Klik na událost: 👉 Dvouhodinový MOTEL 👈',
+        type: 'Fotka',
+        public: 721,
+        organic: 721,
+        paid: 0,
+        clicks: 94,
+        reactions: 50
+      },
+      {
+        datetime: '2019-02-23T13:00',
+        annotation: 'Co se skrývá za dveřmi motelového pokoje? Sami nevíme, vše bude vznikat přímo před vašima očima. 🕵️ Buďte svědky jedinečných příběhů, zveme vás do divadla na náš 👉 Dvouhodinový MOTEL 👈 🛏️',
+        type: 'Fotka',
+        public: 188,
+        organic: 188,
+        paid: 0,
+        clicks: 19,
+        reactions: 7
+      },
+      {
+        datetime: '2019-02-22T13:00',
+        annotation: 'Za dva týdny v pátek jsme si pro vás připravili lahůdku! Tři dvojice, tři příběhy opředené tajemstvím, jeden motel. 🏨 Doražte :-) ➡️ Dvouhodinový MOTEL ⬅️',
+        type: 'Fotka',
+        public: 600,
+        organic: 600,
+        paid: 0,
+        clicks: 98,
+        reactions: 58
+      },
+      {
+        datetime: '2019-02-17T13:00',
+        annotation: 'Máte rozbitý autobus? Dejte tam porod! To nejlepší nakonec :-) V prozatím poslední epizodě ze série Studio Poločas si Marcel a Dan posvítili na druhou část scény s rozbitým autobusem. Tentokrát to bude ještě drsnější, než posledně. Koukněte :-) Který díl se vám líbil nejvíce? Předchozí díly Studia Poločas: https://www.facebook.com/pg/polocas.napadu/videos/ Video s rozebíranou scénkou Rozbitý autobus: https://www.facebook.com/polocas.napadu/videos/2509582475931195',
+        type: 'Video',
+        public: 448,
+        organic: 448,
+        paid: 0,
+        clicks: 74,
+        reactions: 8
+      },
+      {
+        datetime: '2019-02-12T23:36',
+        annotation: 'Kdo jsem? Kdo jsi ty? Jaký je mezi námi vztah? Kde jsme? Co a proč tady děláme? Otázky, které si klade improvizátor v každé nové scéně. Nebo když se moc opije. Dnes jsme trénovali ten první případ, abychom byli 8. března ready na naše další představení. Těšíme se na vás! :-)',
+        type: 'Stav',
+        public: 195,
+        organic: 195,
+        paid: 0,
+        clicks: 2,
+        reactions: 3
+      },
+      {
+        datetime: '2019-02-08T23:12',
+        annotation: 'Hlásíme se vám živě z pozápasového studia! S týmem KINO jsme po vyrovnaném souboji nakonec vybojovali drtivou remízu 6:6. 🎉 Děkujeme všem 70 (!) divákům za naprosto skvělou atmosféru a těšíme se na viděnou 8.3. na dalším našem představení :-)',
+        type: 'Stav',
+        public: 193,
+        organic: 193,
+        paid: 0,
+        clicks: 4,
+        reactions: 14
+      },
+      {
+        datetime: '2019-02-08T18:16',
+        annotation: 'Jsme tu a v 19:30 začínáme! Těšíme se na vás :-) https://www.facebook.com/events/219077379037827',
+        type: 'Fotka',
+        public: 236,
+        organic: 236,
+        paid: 0,
+        clicks: 68,
+        reactions: 25
+      },
+      {
+        datetime: '2019-02-05T11:46',
+        annotation: 'Unikla tajná fotka! 🤭 Jsou na ni moderátoři se svou elektronickou tužkou naživo přímo během představení. Již pátek budou moderátoři David a Jakub opět v akci na impro zápase Poločas nápadu vs KINO. Neváhejte a rezervujte si své místo ještě dnes na 👉 http://rezervace.polocas-napadu.cz 👈',
+        type: 'Fotka',
+        public: 197,
+        organic: 197,
+        paid: 0,
+        clicks: 35,
+        reactions: 11
+      },
+      {
+        datetime: '2019-02-03T19:00',
+        annotation: 'Nekompromisní elektronická tužka opět zasahuje! Marcel s Danem rozebírají poetickou scénku s rozbitým autobusem. A že si nebrali žádné servítky ani vůči hráčům z vlastních řad 😮 Jo, a věděli jste, že na našich improzápasech můžete rozbor elektronickou tužkou vidět naživo před začátkem druhé poloviny večera? Přijďte se přesvědčit na některý z našich zápasů 👀 (Video s celou rozebíranou scénou: https://www.facebook.com/polocas.napadu/videos/2509582475931195)',
+        type: 'Video',
+        public: 588,
+        organic: 588,
+        paid: 0,
+        clicks: 141,
+        reactions: 37
+      },
+      {
+        datetime: '2019-02-03T09:30',
+        annotation: 'Jak jsme si spolu s týmem Divadlo Terno / Improti poradili ve verších s rozbitým autobusem? Asi tak, že z toho bylo tolik materiálu, že z toho vznikly hned dva rozbory elektronickou tužkou. Až budete mít zhlédnuto, tak můžete pokračovat rovnou tady: https://www.facebook.com/polocas.napadu/videos/393161578118219/',
+        type: 'Video',
+        public: 214,
+        organic: 214,
+        paid: 0,
+        clicks: 31,
+        reactions: 4
+      },
+      {
+        datetime: '2019-02-02T11:00',
+        annotation: 'To nejpikantnější jsme si nechali nakonec - již v pátek 8.2. bude na pódiu Divadla Bez Hranic probíhat kromě zápasu týmů Poločasu nápadu a KINO taky zápas sourozenecký, a to rovnou mezi dvojčaty! Bára z KINO versus Alča z Poločasu. Kdo s koho? Nenechte si ujít jedinečný improzápas Poločas nápadu vs KINO. Rezervace míst: http://rezervace.polocas-napadu.cz',
+        type: 'Video',
+        organic: 658,
+        public: 658,
+        paid: 0,
+        clicks: 162,
+        reactions: 19
+      },
+      {
+        datetime: '2019-02-01T18:32',
+        annotation: 'Janča: Jsem padající členka Poločasu nápadu Pivo: Jsem pivo Kateřina: Jsem nová členka Poločasu nápadu? Poločas nápadu: Bereme novou členku! Tak jsme se tento týden opět rozrostli :-)',
+        type: 'Fotka',
+        public: 258,
+        organic: 258,
+        paid: 0,
+        clicks: 52,
+        reactions: 22
+      },
+      {
+        datetime: '2019-02-01T13:00',
+        annotation: 'Posledních pár dní jsme vám představili téměř všechny hráče, kteří se utkají v zápase Poločas nápadu vs KINO. Sestavu týmu KINO uzavírá Bára. Těšíme se v pátek 8.2. v Divadle Bez Hranic! Vstupenky a rezervace na stránce události: Poločas nápadu vs KINO',
+        type: 'Video',
+        public: 184,
+        organic: 184,
+        paid: 0,
+        clicks: 28,
+        reactions: 4
+      },
+      {
+        datetime: '2019-01-31T13:00',
+        annotation: 'Marcel opět v akci! Již příští pátek bude jedním ze tří Poločasáků, který se utká v impro zápase proti týmu KINO. Rezervace vstupenek v plném proudu na stránce události: Poločas nápadu vs KINO',
+        type: 'Video',
+        public: 375,
+        organic: 375,
+        paid: 0,
+        clicks: 64,
+        reactions: 23
+      },
+      {
+        datetime: '2019-01-30T13:00',
+        annotation: 'Dalším odvážlivcem, který se za tým KINO postaví proti nám je Světla! Jak dopadne zápas, kde moderátoři svou nelítostnou elektronickou tužkou rozebírají každičký pohyb? Přijďte se taky podívat Vstupenky a více informací: Poločas nápadu vs KINO',
+        type: 'Video',
+        public: 188,
+        organic: 188,
+        paid: 0,
+        clicks: 22,
+        reactions: 9
+      },
+      {
+        datetime: '2019-01-29T13:00',
+        annotation: 'Zbývá 10 dní do našeho dalšího impro zápasu. Po delší době se do boje na prkna, která znamenají smrt v jedné minutě vrhne za náš tým Ondra! Držte nám palce a nebo raději rovnou přijďte zažít tu nejlepší zápasovou atmosféru. Link na událost: Poločas nápadu vs KINO, 8.2., Divadlo Bez Hranic',
+        type: 'Video',
+        public: 646,
+        organic: 646,
+        paid: 0,
+        clicks: 106,
+        reactions:  25
+      },
+      {
+        datetime: '2019-01-28T15:00',
+        annotation: 'Již za 11 dní se utkáme v nelítostném improvizačním zápase s týmem KINO. Pojďme se podívat na prvního našeho vyzyvatele. My ladíme formu a vy si zapište do diářů: Poločas nápadu vs KINO, 8.2., Divadlo Bez Hranic',
+        type: 'Video',
+        public: 176,
+        organic: 176,
+        paid: 0,
+        clicks: 27,
+        reactions: 5,
+      },
+      {
+        datetime: '2019-01-25T12:32',
+        annotation: 'Zkoušíme i nové, neotřelé kategorie, jako třeba 2D :-) Takto to vypadalo na tréninku, když se Víťa snažil projít kolem nového zahradníka Ondřeje. Na příštím představení tuto kategorii sice asi ještě neuvidíte, ale máme pro vás spoustu dalších vyladěných inovací 🤩 Přijďte se přesvědčit za 2 týdny ➡️ Poločas nápadu vs KINO ⬅️',
+        type: 'Video',
+        public: 495,
+        organic: 495,
+        paid: 0,
+        clicks: 107,
+        reactions: 30
+      },
+      {
+        datetime: '2019-01-24T21:22',
+        annotation: 'Tak tohle se velmi vydařilo 🤩 Více než 200 lidí na žádném jiném našem představení asi ještě nebylo 🍾 Boskovice, děkujeme!!! 🙏 Co ty, Praho, přijdeš příště taky? :-) Další zápas nás čeká již za 2 týdny ➡️ Poločas nápadu vs KINO ⬅️',
+        type: 'Fotka',
+        public: 216,
+        organic: 216,
+        paid: 0,
+        clicks: 30,
+        reactions: 9
+      },
+      {
+        datetime: '2019-01-06T11:11',
+        annotation: 'Jak může červená knihovna souviset se zeleným ječmenem? Možná se dozvíte ve videu, které vzniklo během našeho zápasu s KLIKA - Improvizační tým. Na profesionální rozbor scénky můžete kouknout ve Studiu poločas: https://www.facebook.com/polocas.napadu/videos/997568263765151 Jo, a již zítra, v pondělí 7.1. hrajeme další zápas, přijďte! -> Improzápas: RACI vs Poločas nápadu :-)',
+        type: 'Video',
+        public: 236,
+        organic: 236,
+        paid: 0,
+        clicks: 37,
+        reactions: 8
+      },
+      {
+        datetime: '2019-01-06T11:06',
+        annotation: 'Honza opět tasí svou elektronickou tužku, aby spolu s Ondrou rozebral červenou knihovnu na téma zelený ječmen, která vznikla během našeho zápasu s týmem KLIKA. Jak moc budou Honza a Ondra objektivní, když ve scénce sami účinkovali? :-) Původní záznam scénky tady: https://www.facebook.com/polocas.napadu/videos/283682102341275/',
+        type: 'Video',
+        public: 439,
+        organic: 439,
+        paid: 0,
+        clicks: 70,
+        reactions: 7
+      },
+      {
+        datetime: '2018-12-30T13:57',
+        annotation: 'Až doslavíte Vánoce, Silvestra a Den obnovy samostatného českého státu, tak se pak jen 6x vyspíte a budete mít možnost vidět nás 7.1. ve Skautském institutu, kde nás čeká Improzápas: RACI vs Poločas nápadu. Za tým Poločasu nastoupí velmi silná sestava ve složení Marcel, Jan a Víťa. Srdečně zveme a těšíme se! :-) ➡️ https://www.facebook.com/events/584859561969992/',
+        type: 'Fotka',
+        public: 168,
+        organic: 168,
+        paid: 0,
+        clicks: 7,
+        reactions: 2
+      },
+      {
+        datetime: '2018-12-24T20:04',
+        annotation: 'Hezké téma do košíčku, pod stromečkem dárků nános, nezapomeň na babičku, a hlavně krásný poločas vánoc!',
+        type: 'Fotka',
+        public: 224,
+        organic: 224,
+        paid: 0,
+        clicks: 14,
+        reactions: 18
+      },
+      {
+        datetime: '2018-12-20T08:31',
+        annotation: 'Příběhy ze zákulisí včerejšího představení: * Jeden z herců 2 hodiny před představením musel odřeknout svou účast. Prohlásili jsme ho v příběhu za mrtvého. * Alena naopak 3,5 hodiny před začátkem potvrdila hraní a zejména v poslední scéně hrála za dva * Na jeviště jsme šli s kostrou příběhu a svými postavami, zbytek vznikal přímo na místě * Zapomněli jsme v divadle záznamové zařízení na zvuk. Pokud ho nevypnuli, nahrává dodnes.. Těšíme se na vás opět 7.1. na zápase RACI vs Poločas nápadu!',
+        type: 'Video',
+        public: 183,
+        organic: 183,
+        paid: 0,
+        clicks: 62,
+        reactions: 15
+      },
+      {
+        datetime: '2018-12-19T14:13',
+        annotation: 'Neseďte u Facebooku a přijďte dnes večer do divadla! Premiéra Ostrov, který jsem přehlíd, 19:30, Divadlo Bez Hranic (kousek od Náměstí bratří Synků) Těšíme! >> https://www.facebook.com/events/2339048799503113/ <<',
+        type: 'Video',
+        public: 563,
+        organic: 563,
+        paid: 0,
+        clicks: 27,
+        reactions: 19
+      },
+      {
+        datetime: '2018-12-13T17:30',
+        annotation: 'Corpus, Vokalus, Filtrus - našus slangus pro hlavňus charakeristikus při tvořeňus postavus. 🤓 Přijďtus se podívatus příšťus týdnus ve středus do Divadlus Bez Hranicus. 🎭 Událostus tus ➡️ Ostrov, který jsem přehlíd 🏝️',
+        type: 'Fotka',
+        public: 347,
+        organic: 347,
+        paid: 0,
+        clicks: 28,
+        reactions: 13
+      },
+      {
+        datetime: '2018-12-09T16:02',
+        annotation: 'Přesně za 10 dní se na vás těšíme v Divadle Bez Hranic na našem novém představení Ostrov, který jsem přehlíd! 🏝️ Budete svědky vzniku a zániku příběhu několika trosečníků, které doslova dohnala jejich minulost. Přijďte se pobavit 😁 ➡️ https://www.facebook.com/events/2339048799503113/',
+        type: 'Fotka',
+        public: 654,
+        organic: 654,
+        paid: 0,
+        clicks: 32,
+        reactions: 16
+      },
+      {
+        datetime: '2018-12-05T08:44',
+        annotation: 'Dnes pilně trénujeme vlastní nový formát - Ostrov, který jsem přehlíd. 🏝️ Improvizované představení odvíjející se od toho, jaké nám na začátku zapůjčíte předměty. To musíte vidět! 🤓 Již za dva týdny ➡️ https://www.facebook.com/events/2339048799503113/',
+        type: 'Fotka',
+        public: 169,
+        organic: 169,
+        paid: 0,
+        clicks: 49,
+        reactions: 7
+      },
+      {
+        datetime: '2018-12-02T19:34',
+        annotation: 'První epizoda improvizovaného rozboru improvizované scénky v improvizovaném studiu pražské improvizační skupiny Poločas nápadu. Tentokrát se Honza a Dan zaměřili na scénku s mopem v kategorii mikrofon během zápasu týmů Poločas nápadu a KLIKA. Celá scénka tady: https://www.facebook.com/polocas.napadu/videos/351787662295079/',
+        type: 'Video',
+        public: 184,
+        organic: 184,
+        paid: 0,
+        clicks: 29,
+        reactions: 6
+      },
+      {
+        datetime: '2018-12-02T19:29',
+        annotation: 'Improzápas není vždy procházka růžovým sadem. Občas se stane nějaká chyba a někdy je jich tolik, že se musí začít od začátku. Jak to vypadá, když se improvizace zrovna nepovede? Dozvíte se ve videu. Co přesně se nepovedlo a jak to mělo být? Dozvíte se ve 2. díle Studia Poločas: https://www.facebook.com/polocas.napadu/videos/746542879033769/',
+        type: 'Video',
+        public: 169,
+        organic: 169,
+        paid: 0,
+        clicks: 30,
+        reactions: 3
+      },
+      {
+        datetime: '2018-12-02T19:25',
+        annotation: 'Jak moc nekompromisní bude Honzova elektronická tužka při rozboru scénky "Tam a zpět", která se fakt nepovedla? Dozvíte se v druhé epizodě pořadu Studio Poločas. :-) Celá scénka: https://www.facebook.com/polocas.napadu/videos/2266714456986601/ První epizoda Studia Poločas: https://www.facebook.com/polocas.napadu/videos/315476099055499/',
+        type: 'Video',
+        public: 224,
+        organic: 224,
+        paid: 0,
+        clicks: 52,
+        reactions: 8
+      },
+      {
+        datetime: '2018-11-28T09:05',
+        annotation: 'Včerejší trénink na charakteristické hlasové projevy jsme zakončili přijetím Pavla mezi naše řádné členy. Vítej, Pavle! :-)',
+        type: 'Fotka',
+        public: 361,
+        organic: 361,
+        paid: 0,
+        clicks: 192,
+        reactions: 20
+      },
+      {
+        datetime: '2018-11-22T17:52',
+        annotation: 'Když zrovna neimprovizujeme, tak si třeba i zahrajeme v nereklamě :-) Taky občas míváte takhle Blbé nápady?',
+        type: 'Sdílené video',
+        public: 174,
+        organic: 174,
+        paid: 0,
+        clicks: 61,
+        reactions: 9
+      },
+      {
+        datetime: '2018-11-18T12:20',
+        annotation: 'Před pár týdny jste měli možnost nás vidět a slyšet při improvizovaných rozhlasových hrách a filmovém dabingu 🎙️ A takto to vypadalo :-) Chcete nás příště vidět naživo? Pište si 19.12., představení "Ostrov, který jsem přehlíd" 🏝️ Bude to něco úplně nového, těšte se 👀',
+        type: 'Fotka',
+        public: 260,
+        organic: 260,
+        paid: 0,
+        clicks: 155,
+        reactions: 12
+      },
+      {
+        datetime: '2018-11-14T11:30',
+        annotation: 'Trénujeme na další představení. Těšíme se 19. prosince. Čeká na vás katastroficky laděná improshow "Ostrov, který jsem přehlíd" 😄',
+        type: 'Fotka',
+        public: 326,
+        organic: 326,
+        paid: 0,
+        clicks: 131,
+        reactions: 24
+      },
+      {
+        datetime: '2018-11-11T15:53',
+        annotation: 'Děkujeme všem, kteří za námi v pátek dorazili do divadla, takovou dokonalou atmosféru jsme dlouho nezažili!!! 🤩 Těšíme se na všechny opět 19. prosince v Divadle Bez Hranic 🙃',
+        type: 'Fotka',
+        public: 125,
+        organic: 125,
+        paid: 0,
+        clicks: 3,
+        reactions: 3
+      },
+      {
+        datetime: '2018-11-08T08:31',
+        annotation: 'Představení pro lidi, kterým běžné divadlo nestačí 👀 https://www.facebook.com/events/305522416701815/',
+        type: 'Fotka',
+        public: 1081,
+        organic: 1081,
+        paid: 0,
+        clicks: 77,
+        reactions: 45
+      },
+      {
+        datetime: '2018-11-07T19:30',
+        annotation: 'Lasergame je jako impro zápas. V obojím lze umřít v jedné minutě 😁 Máte lepší přirovnání? Hoďte nám ho do komentářů :-) A nezapomeňte, již tento pátek v 19:30 hrajeme v Divadle bez hranic! Těšíme se na vás ⤵️ >> https://www.facebook.com/events/305522416701815/ <<',
+        type: 'Fotka',
+        public: 660,
+        organic: 660,
+        paid: 0,
+        clicks: 219,
+        reactions: 28
+      },
+      {
+        datetime: '2018-12-02T19:33',
+        annotation: 'První epizoda improvizovaného rozboru improvizované scénky v improvizovaném studiu pražské improvizační skupiny Poločas nápadu. Tentokrát se Honza a Dan zaměřili na scénku s mopem v kategorii mikrofon během zápasu týmů Poločas nápadu a KLIKA. Celá scénka tady: https://www.facebook.com/polocas.napadu/videos/351787662295079/',
+        type: 'Video',
+        public: 184,
+        organic: 184,
+        paid: 0,
+        clicks: 29,
+        reactions: 6
+      },
+      {
+        datetime: '2018-11-04T16:34',
+        annotation: 'Téma pro scénku: "Chtěl jsem přijít na první impro zápas Poločasu nápadu v této sezóně, ale zapomněl jsem." Herecké ztvárnění: Jan Nebuďte jako Honza, zapiště si do diářů nadcházející pátek 9.11. :-) >>> https://www.facebook.com/events/305522416701815/ <<<',
+        type: 'Video',
+        public: 620,
+        organic: 620,
+        paid: 0,
+        clicks: 84,
+        reactions: 9
+      },
+      {
+        datetime: '2018-11-01T17:03',
+        annotation: 'Tento týden jsme pilně trénovali a hráli si s lískami. Příští týden budeme pilně trénovat a hrát s Lískami s velkým "L". Lísky - boskovický improvizační tým Přijďte se podívat! Do divadla! Příští pátek! >>> https://www.facebook.com/events/305522416701815/ <<<',
+        type: 'Video',
+        public: 881,
+        organic: 881,
+        paid: 0,
+        clicks: 144,
+        reactions: 33
+      },
+      {
+        datetime: '2018-10-24T12:30',
+        annotation: 'Neuvěříte, co se bude dít přímo před vašima očima! Přijďte se přesvědčit již zítra do Divadla Bez Hranic https://www.facebook.com/events/112138733014007/',
+        type: 'Video',
+        public: 408,
+        organic: 408,
+        paid: 0,
+        clicks: 47,
+        reactions: 8
+      },
+      {
+        datetime: '2018-10-22T22:54',
+        annotation: 'Co za téma asi chudák Honza dostal? Přijďte nám dát svá vlastní témata již tento čtvrtek do Divadla bez Hranic! :-) https://www.facebook.com/events/112138733014007/',
+        type: 'Video',
+        public: 1200,
+        organic: 1200,
+        paid: 0,
+        clicks: 231,
+        reactions: 37
+      },
+      {
+        datetime: '2018-10-19T10:12',
+        annotation: 'Ladíme a vylaďujeme! Ve čtvrtek bude vše hotovo a od 19:30 se budete moci přesvědčit na vlastní oči a taky uši, že divadlo může být i rádio nebo televize!',
+        type: 'Odkaz',
+        public: 204,
+        organic: 204,
+        paid: 0,
+        clicks: 7,
+        reactions: 5
+      },
+      {
+        datetime: '2018-10-13T19:00',
+        annotation: 'Jak to vypadá, když zpívá mop ve výprodeji? A co na to prodavačka? Tuto scénku jste možná před pár dny zahlédli v našem Studiu Poločas. Zde je v celé, nezkrácené verzi :-) A že jste naše Studio Poločas ještě neviděli? Tak pak koukněte sem: https://www.facebook.com/polocas.napadu/videos/315476099055499/ :-)',
+        type: 'Video',
+        public: 207,
+        organic: 207,
+        paid: 0,
+        clicks: 42,
+        reactions: 9
+      },
+      {
+        datetime: '2018-09-30T13:00',
+        annotation: 'Tak to tady ještě nebylo! První epizoda improvizovaného rozboru improvizované scénky v našem improvizovaném studiu :-) 🎥 Tentokrát se Honza a Dan zaměřili na scénku s mopem v kategorii mikrofon během našeho zápasu s KLIKA - Improvizační tým. Tak ať se vám líbí! :-) https://youtu.be/euX-XC4NO2Y',
+        type: 'Odkaz',
+        public: 638,
+        organic: 638,
+        paid: 0,
+        clicks: 47,
+        reactions: 16
+      },
+      {
+        datetime: '2018-09-17T12:00',
+        annotation: 'Chtěli bychom vás pozvat na naše úplně poslední představení které můžete vidět v září. Rozhlasová hra Rádio Poločas na VŠEFESTu 2018!',
+        type: 'Odkaz',
+        public: 251,
+        organic: 251,
+        paid: 0,
+        clicks: 16,
+        reactions: 5
+      },
+      {
+        datetime: '2018-08-27T18:39',
+        annotation: 'Pripravujeme dnesni verejnou zkousku :-)',
+        type: 'Fotka',
+        public: 140,
+        organic: 140,
+        paid: 0,
+        clicks: 12,
+        reactions: 3
+      }
+    ];
     trainingStats.reverse();
   </script>
 </head>
 <body class="pt-3 pb-3">
   <div class="container">
+    <img class="img-fluid logo" src="../logo/normal.png" />
     <h1 class="mb-3">
-      <img class="img-fluid logo" src="../logo/normal.png" />
       Statistiky
     </h1>
     <div class="chart">
@@ -427,6 +1445,20 @@
     </div>
     <div class="chart">
       <div class="chart-content">
+        <h2>Diváci</h2>
+        <p>Diváci, kteří přišli na představení.</p>
+        <div id="publicProductionAudience"></div>
+      </div>
+    </div>
+    <div class="chart">
+      <div class="chart-content">
+        <h2>Sledovanost Facebooku</h2>
+        <p>Vývoj podle příspěvků.</p>
+        <div id="facebookAudience"></div>
+      </div>
+    </div>
+    <div class="chart">
+      <div class="chart-content">
         <h2>Pozvaných na trénink</h2>
         <p>Vývoj počtu účastníků pozvaných na trénink. Data jsou vzata z interní skupiny na Facebooku. Během čtení grafu mysli na to, že ne vždy podařilo pozvat všechny členy skupiny.</p>
         <div id="trainingInvites"></div>
@@ -435,6 +1467,7 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.7/highcharts.js"></script>
+
   <script>
     const getSeasonAxis = () => seasons.map(season => season.name);
     const commonOptions = {
@@ -442,6 +1475,7 @@
         enabled: false,
       },
       yAxis: {
+        allowDecimals: false,
         title: {
           text: 'Počet',
         },
@@ -462,10 +1496,9 @@
       legend: {
         align: 'right',
         layout: 'vertical',
-        x: -30,
         verticalAlign: 'top',
-        y: 25,
-        floating: true,
+        y: 0,
+        floating: false,
       },
     };
 
@@ -578,6 +1611,79 @@
       }));
     };
 
+    const renderPublicProductionAudienceChart = () => {
+      function countShowsAudience(shows) {
+        return shows
+          ? shows.reduce((acc, show) => acc + show.actual, 0)
+          : 0;
+      }
+
+      const categories = production.filter(showType => showType.shows).map(showType => showType.type);
+      const showTypeVisitors = production.filter(showType => showType.shows).map(showType => ({
+        name: showType.type,
+        y: showType.shows
+          ? Math.floor(countShowsAudience(showType.shows) / showType.shows.length)
+          : 0
+      }));
+      const showTypeVisitorsTotal = production.filter(showType => showType.shows).map(showType => ({
+        name: showType.type,
+        y: showType.shows
+          ? countShowsAudience(showType.shows)
+          : 0
+      }));
+      Highcharts.chart('publicProductionAudience', Object.assign({}, commonOptions, {
+        chart: {
+          type: 'column',
+        },
+        xAxis: {
+          categories
+        },
+        series: [
+          {
+            name: 'Poměrně',
+            data: showTypeVisitors,
+          },
+          {
+            name: 'Celkem',
+            data: showTypeVisitorsTotal,
+            visible: false
+          }
+        ],
+      }));
+    };
+
+    const renderFacebookAudienceChart = () => {
+      function getSeries(name) {
+        return posts.map(post => ({
+          x: moment(post.datetime).utc().valueOf(),
+          y: post[name],
+        })).sort((a, b) => a.x - b.x);
+      }
+      Highcharts.chart('facebookAudience', Object.assign({}, commonOptions, {
+        chart: {
+          type: 'area',
+        },
+        xAxis: {
+          type: 'datetime',
+          tickInterval: 3600 * 1000 * 24 * 30,
+        },
+        series: [
+          {
+            name: 'Organický dosah',
+            data: getSeries('organic'),
+          },
+          {
+            name: 'Kliknutí',
+            data: getSeries('clicks'),
+          },
+          {
+            name: 'Reakce',
+            data: getSeries('reactions'),
+          },
+        ],
+      }));
+    };
+
     const renderTrainingInvitesChart = () => {
       const trainingSeries = trainingStats.slice().map((training) => {
         const date = training.date.split('-').map(num => parseInt(num, 10));
@@ -664,6 +1770,8 @@
     renderPublicProductionChart();
     renderPublicProductionByFormChart();
     renderPublicProductionByLocationChart();
+    renderPublicProductionAudienceChart();
+    renderFacebookAudienceChart();
     renderTrainingInvitesChart();
   </script>
 </body>
