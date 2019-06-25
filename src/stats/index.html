@@ -133,6 +133,12 @@
       { season: 3, count: 0 },
       { season: 4, count: 1 },
     ];
+    const childrenDead = [
+      { season: 1, count: 0 },
+      { season: 2, count: 0 },
+      { season: 3, count: 0 },
+      { season: 4, count: 0 },
+    ];
     const production = [
       {
         type: 'Příběhy z motelu',
@@ -221,9 +227,9 @@
           { season: 4, count: 0 },
         ],
         shows: [
-          { season: 4, date: '2018-08-27', facebookAttend: 25, facebookMaybe: 49, actual: 30, reservations: 0 },
+          { season: 4, external: true, date: '2018-08-27', facebookAttend: 25, facebookMaybe: 49, actual: 30, reservations: 0 },
           { season: 4, date: '2018-10-25', facebookAttend: 21, facebookMaybe: 57, actual: 30, reservations: 0 },
-          { season: 4, date: '2019-06-18', facebookAttend: 0, facebookMaybe: 0, actual: 7, reservations: 0 },
+          { season: 4, external: true, date: '2019-06-18', facebookAttend: 0, facebookMaybe: 0, actual: 7, reservations: 0 },
         ]
       },
       {
@@ -1523,20 +1529,18 @@
     };
 
     const renderChildrenBornChart = () => {
-      const childrenBornSeries = seasons.map((season) => {
-        const seasonCount = childrenBorn.find(sc => sc.season === season.id);
-        if (seasonCount) {
-          return seasonCount.count;
-        }
-        return 0;
-      });
-      const childrenNotYetBornSeries = seasons.map((season) => {
-        const seasonCount = childrenNotYetBorn.find(sc => sc.season === season.id);
-        if (seasonCount) {
-          return seasonCount.count;
-        }
-        return 0;
-      });
+      function getChildrenSeries(source) {
+        return seasons.map((season) => {
+          const seasonCount = source.find(sc => sc.season === season.id);
+          if (seasonCount) {
+            return seasonCount.count;
+          }
+          return 0;
+        });
+      }
+      const childrenBornSeries = getChildrenSeries(childrenBorn);
+      const childrenNotYetBornSeries = getChildrenSeries(childrenNotYetBorn);
+      const childrenDeadSeries = getChildrenSeries(childrenDead);
       Highcharts.chart('childrenBorn', Object.assign({}, commonOptions, {
         chart: {
           backgroundColor: 'transparent',
@@ -1552,6 +1556,10 @@
           {
             name: 'Natalita',
             data: childrenBornSeries,
+          },
+          {
+            name: 'Mortalita',
+            data: childrenDeadSeries,
           },
           {
             name: 'Děti in progress',
@@ -1651,6 +1659,8 @@
     };
 
     const renderPublicProductionAudienceChart = () => {
+      const showTypesWithShows = production.filter(showType => showType.shows);
+
       function sumAspects(show, aspects) {
         return aspects.reduce((acc, aspect) => acc + show[aspect], 0);
       }
@@ -1661,34 +1671,37 @@
           : 0;
       }
 
-      const showTypesWithShows = production.filter(showType => showType.shows);
+      function isShowInSeason(seasonId) {
+        return show => show.season === seasonId && !show.external;
+      }
+
+      function getSeasonShows(seasonId) {
+        return showTypesWithShows
+          .map(showType => showType.shows)
+          .flat()
+          .filter(isShowInSeason(seasonId))
+      }
+
+      function countVisitorsPerSeason(aspects) {
+        return seasons.map(season => countShowsAudience(
+          getSeasonShows(season.id),
+          aspects
+        ))
+      }
+
       const showTypeVisitors = showTypesWithShows.map(showType => ({
         name: showType.type,
         data: seasons.map((season) => {
-          const shows = showType.shows.filter(show => show.season === season.id);
-          // console.log(season.id, showType.type, shows)
+          const shows = showType.shows.filter(isShowInSeason(season.id));
           return shows.length === 0
             ? 0
             : Math.floor(countShowsAudience(shows, ['actual']) / shows.length);
         })
       }));
-
-      function countVisitorsPerSeason(aspects) {
-        return seasons.map(season => countShowsAudience(
-          showTypesWithShows
-            .map(showType => showType.shows)
-            .flat()
-            .filter(show => show.season === season.id),
-          aspects
-        ))
-      }
       const showsPerSeason = seasons.map((season) => {
-        const shows = showTypesWithShows
-          .map(showType => showType.shows)
-          .flat()
-          .filter(show => show.season === season.id);
+        const shows = getSeasonShows(season.id);
         return shows.length > 0
-          ? countShowsAudience(shows, ['actual']) / shows.length
+          ? Math.floor(countShowsAudience(shows, ['actual']) / shows.length)
           : 0
       });
       const showVisitorsTotal = countVisitorsPerSeason(['actual']);
@@ -1716,7 +1729,7 @@
           },
           {
             data: showVisitorsTotal,
-            name: 'Celkem',
+            name: 'Návštěvy',
             type: 'spline',
             visible: false,
           },
