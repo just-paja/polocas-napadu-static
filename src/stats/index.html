@@ -1570,18 +1570,23 @@
       }));
     };
 
+    function getProductSeasonCount(product, seasonId) {
+      const seasonCount = product.counts.find(countSeason => countSeason.season === seasonId);
+      const shows = product.shows
+        ? product.shows.filter(show => show.season === seasonId)
+        : []
+      return (seasonCount ? seasonCount.count : 0) + shows.length;
+    }
+
     const renderPublicProductionChart = () => {
       const totalSeries = {
         type: 'spline',
         name: 'Celkem',
         visible: false,
-        data: seasons.map(season => production.reduce((acc, productionLine) => {
-          const seasonCount = productionLine.counts.find(countSeason => countSeason.season === season.id);
-          const shows = productionLine.shows
-            ? productionLine.shows.filter(show => show.season === season.id)
-            : []
-          return acc + (seasonCount ? seasonCount.count : 0) + shows.length;
-        }, 0)),
+        data: seasons.map(season => production.reduce((acc, productionLine) =>
+          acc + getProductSeasonCount(productionLine, season.id),
+          0
+        )),
       };
       Highcharts.chart('publicProduction', Object.assign({}, commonOptions, {
         xAxis: {
@@ -1594,10 +1599,7 @@
           ...production.map(productionLine => ({
             name: productionLine.type,
             data: productionLine.counts.map((seasonCount) =>
-              seasonCount.count +
-              (productionLine.shows
-                ? productionLine.shows.filter(show => show.season === seasonCount.season).length
-                : 0)
+              getProductSeasonCount(productionLine, seasonCount.season)
             ),
           })),
           totalSeries,
@@ -1611,15 +1613,10 @@
         data: seasons.map((season) => {
           return production
             .filter(prodLine => prodLine.form === form.id)
-            .reduce((aggr, productionLine) => {
-              const count = productionLine.counts
-                .find(seasonCount => seasonCount.season === season.id);
-
-              if (count) {
-                return aggr + count.count;
-              }
-              return 0;
-            }, 0)
+            .reduce((aggr, productionLine) =>
+              aggr + getProductSeasonCount(productionLine, season.id),
+              0
+            )
         }),
       }));
       Highcharts.chart('publicProductionForm', Object.assign({}, commonOptions, {
