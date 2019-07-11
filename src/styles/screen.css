@@ -8,16 +8,20 @@
 }
 
 body {
-  background: #199638;
+  background: #007120;
+  color: #253017;
 }
 
 footer {
   padding: 3rem 0;
 }
 
+a:link, a:visited {
+  color: #007120
+}
+
 .page-content {
-  background: #fff;
-  padding-top: 1rem;
+  background: #fcfaed;
   padding-bottom: 0.5rem;
 }
 
@@ -26,56 +30,19 @@ footer {
 }
 
 .logo {
+  background-image: url(../logo/v2-bulb-coconut-cream.svg);
+  background-size: contain;
   display: block;
-  height:0;
-  margin:0 auto;
-  overflow:hidden;
-  position:relative;
-  min-height:250px;
-  max-width:250px;
+  height: 300px;
+  margin: 0 auto;
+  max-width: 300px;
+  min-height: 300px;
+  overflow: hidden;
+  position: relative;
 }
 
-.logo-tiny {
-  max-width: 100px;
-  min-height: 100px;
-}
-
-.logo * {
-  cursor:default;
-}
-
-.logo-cont {
-  position:absolute;
-  height:100%;
-  left:0;
-  top:0;
-  width:100%;
-}
-
-.logo-bulb,
-.logo-border,
-.logo-anim {
-  bottom:0;
-  left:0;
-  position:absolute;
-  right:0;
-  top:0;
-}
-
-.logo-bulb {
-  background:url(../layers/lightbulb.png) center center no-repeat;
-  background-size:contain;
-}
-
-.logo-anim {
-  animation: rotate 10s linear infinite;
-  background:url(../layers/flaps.png) center center no-repeat;
-  background-size:contain;
-}
-
-.logo-border {
-  background: url(../layers/circle.png) center center no-repeat;
-  background-size:contain;
+.logo h1 {
+  display: none
 }
 
 .profile-link {
@@ -173,4 +140,31 @@ footer {
   padding: 1rem 0 1rem;
   margin: 1rem 0;
   background: rgba(200,200,200,.4);
+}
+
+.members {
+  background: #fff;
+  padding: 1.5rem;
+}
+
+.members ul {
+  margin-top: 1rem;
+}
+
+.introduction {
+  background: #007120;
+  color: #fcfaed;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.introduction a {
+  color: #87e1d1
+}
+
+.details, .shows {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-top: 1rem;
 }
