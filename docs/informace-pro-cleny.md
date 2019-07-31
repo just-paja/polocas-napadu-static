@@ -8,7 +8,7 @@ Oblečení na tréninky doporučujeme cokoliv v čem se cítíte pohodlně a dob
 
 ## Období otrkávání
 
-Aby se zájemce mohl stát řádným členem skupiny, každý dostane dva měsíce, tj 8 tréninky, zdarma. Cílem je vzájemně ozkoušet jak mezi novým členem a skupinou funguje chemie, ale taky aby se mohl naladit na náš biorytmus a zapojit se do interního fungování skupiny.
+Aby se zájemce mohl stát řádným členem skupiny, každý dostane dva měsíce, tj 8 tréninků, zdarma. Cílem je vzájemně ozkoušet jak mezi novým členem a skupinou funguje chemie, ale taky aby se mohl naladit na náš biorytmus a zapojit se do interního fungování skupiny.
 
 Po zkušebce všechny čeká zpětná vazba, na které se vždy dohodneme jak dál. Jsme už zajetá skupina a potřebujeme aby nováčci chytli naši vizi. Zatím u nás všichni nováčci otrkávací období ve zdraví přežili :-)
 
