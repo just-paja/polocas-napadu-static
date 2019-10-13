@@ -3,10 +3,6 @@
   hosts: web
   roles:
     - role: practical-ansible.nginx-redirect
-      nginx_redirect_project_name: cz-polocas-napadu
-      nginx_redirect_server_name: polocasnapadu.cz www.polocasnapadu.cz www.polocas-napadu.cz
-      nginx_redirect_destination_domain: polocas-napadu.cz
-    - role: practical-ansible.nginx-redirect
       nginx_redirect_project_name: cz-polocas-napadu-tema
       nginx_redirect_server_name: tema.polocasnapadu.cz tema.polocas-napadu.cz temata.polocasnapadu.cz temata.polocas-napadu.cz
       nginx_redirect_destination_url: https://interactive.polocas-napadu.cz/inspirations/?apiUrl=https://api.polocas-napadu.cz/graphql#/match/5
@@ -26,8 +22,3 @@
       nginx_redirect_server_name: internal.polocasnapadu.cz internal.polocas-napadu.cz
       nginx_redirect_destination_url: https://sites.google.com/polocas-napadu.cz/polocas-wiki
       nginx_redirect_status: 302
-    - role: practical-ansible.nginx-static
-      nginx_static_project_name: cz-polocas-napadu
-      nginx_static_server_name: polocas-napadu.cz
-      nginx_static_project_environment: production
-      nginx_static_directory: src/
