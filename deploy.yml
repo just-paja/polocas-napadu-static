@@ -5,12 +5,12 @@
     - role: practical-ansible.nginx-redirect
       nginx_redirect_project_name: cz-polocas-napadu-tema
       nginx_redirect_server_name: tema.polocasnapadu.cz tema.polocas-napadu.cz temata.polocasnapadu.cz temata.polocas-napadu.cz
-      nginx_redirect_destination_url: https://interactive.polocas-napadu.cz/inspirations/?apiUrl=https://api.polocas-napadu.cz/graphql#/match/5
+      nginx_redirect_destination_url: https://interactive.polocas-napadu.cz/inspirations/?apiUrl=https://api.polocas-napadu.cz/graphql#/match/6
       nginx_redirect_status: 302
     - role: practical-ansible.nginx-redirect
       nginx_redirect_project_name: cz-polocas-napadu-rezervace
       nginx_redirect_server_name: rezervace.polocasnapadu.cz rezervace.polocas-napadu.cz
-      nginx_redirect_destination_url: https://docs.google.com/forms/d/e/1FAIpQLSedvE8EOScixy3snTpeAwk1AAqW0PBzX4mHb_FwjiJUtAQSUg/viewform?usp=sf_link
+      nginx_redirect_destination_url: https://docs.google.com/forms/d/e/1FAIpQLScl3gTXUbfDhZ5yKiD-mySSfByQiYxUv__j18my4Og4VekWhw/viewform?usp=sf_link
       nginx_redirect_status: 302
     - role: practical-ansible.nginx-redirect
       nginx_redirect_project_name: cz-polocas-napadu-treninky
