@@ -5,7 +5,7 @@
     - role: practical-ansible.nginx-redirect
       nginx_redirect_project_name: cz-polocas-napadu-tema
       nginx_redirect_server_name: tema.polocasnapadu.cz tema.polocas-napadu.cz temata.polocasnapadu.cz temata.polocas-napadu.cz
-      nginx_redirect_destination_url: https://interactive.polocas-napadu.cz/inspirations/?apiUrl=https://api.polocas-napadu.cz/graphql#/match/6
+      nginx_redirect_destination_url: https://interactive.polocas-napadu.cz/inspirations/?apiUrl=https://api.polocas-napadu.cz/graphql#/match/7
       nginx_redirect_status: 302
     - role: practical-ansible.nginx-redirect
       nginx_redirect_project_name: cz-polocas-napadu-rezervace
