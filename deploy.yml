@@ -22,3 +22,8 @@
       nginx_redirect_server_name: internal.polocasnapadu.cz internal.polocas-napadu.cz
       nginx_redirect_destination_url: https://sites.google.com/polocas-napadu.cz/polocas-wiki
       nginx_redirect_status: 302
+    - role: practical-ansible.nginx-redirect
+      nginx_redirect_project_name: cz-polocas-napadu-anketa
+      nginx_redirect_server_name: anketa.polocasnapadu.cz anketa.polocas-napadu.cz
+      nginx_redirect_destination_url: https://docs.google.com/forms/d/e/1FAIpQLSeu9Kzku8SbC12c6koJM4qzjAxsX7vO-u5i9qH0dgaasSdw3Q/viewform?usp=sf_link
+      nginx_redirect_status: 302
