@@ -24,7 +24,6 @@ jobs:
             . venv/bin/activate
             pip install pipenv vrun
             pipenv install --dev
-            pipenv check
 
       - run:
           name: Install Ansible dependencies
